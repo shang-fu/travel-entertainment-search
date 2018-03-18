@@ -1,5 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {LocationService} from './getlocation.service';
 
 @Component({
   selector: 'app-app-form',
@@ -10,6 +11,8 @@ export class AppFormComponent implements OnInit {
   @ViewChild('f') signupForm: NgForm;
   defaultCategory = 'Default';
   defaultLocale = 'current';
+  currentLat;
+  currentLon;
 
   data = {
     keyword: '',
@@ -19,10 +22,18 @@ export class AppFormComponent implements OnInit {
     localeOtherDetail: ''
   };
 
-  constructor() { }
+  constructor(private getlocation: LocationService) { }
 
   ngOnInit() {
-
+    this.getlocation.getLocation()
+      .subscribe(
+        (data: Response) => {
+          console.log(data);
+          this.currentLat = data['lat'];
+          this.currentLon = data['lon'];
+        },
+        (error) => console.log(error)
+      );
   }
 
   onSubmit() {

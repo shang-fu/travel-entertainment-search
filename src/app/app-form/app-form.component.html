@@ -100,11 +100,13 @@
               <button
                 type="submit"
                 class="btn btn-primary"
-                [disabled]="!f.valid"
+                [disabled]="!f.valid || !currentLat || !currentLon"
               ><i class="fas fa-search"></i> Search</button>
               <button type="button" class="btn btn-outline-secondary" (click)="onClear()">Clear</button>
             </div>
           </div>
+
+
 
 
         </div>
