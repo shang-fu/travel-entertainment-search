@@ -1,0 +1,36 @@
+.myCustomRow {
+  margin-bottom: 0;
+  /*height: 24px;*/
+}
+
+.myCustomContainer {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.myCustomJumbotron {
+  background-color: rgb(246,246,246);
+  border-color: lightgray;
+  border-width: 1px;
+  border-style: solid;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.myCustomHeading {
+  text-align: center;
+  padding-bottom: 20px;
+
+}
+
+.redSPot {
+  color: red;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+.myform-text {
+  color: red;
+}

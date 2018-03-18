@@ -1,0 +1,119 @@
+<div class="container">
+  <div class="jumbotron myCustomJumbotron">
+    <div class="myCustomContainer">
+
+  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <div ngModelGroup="searchData">
+      <h2 class="myCustomHeading">Travel and Entertainment Search</h2>
+      <div class="form-group row">
+        <div class="col-sm-1"></div>
+          <label for="keyword" class="col-sm-2 col-form-label">Keyword<span class="redSPot">*</span></label>
+        <div class="col-sm-8">
+        <input type="text" class="form-control" id="keyword" ngModel name="keyword" required #keyword="ngModel">
+          <span class="myform-text" *ngIf="!keyword.valid && keyword.touched">Please enter a keyword.</span>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-1"></div>
+      <label for="category" class="col-sm-2 col-form-label">Category</label>
+      <div class="col-sm-6">
+        <select class="form-control" id="category" [ngModel]="defaultCategory" name="category" >
+          <option>Default</option>
+          <option>Airport</option>
+          <option>Amusement Park</option>
+          <option>Aquarium</option>
+          <option>Art Gallery</option>
+          <option>Bakery</option>
+          <option>Bar</option>
+          <option>Beauty Salon</option>
+          <option>Bowling Alley</option>
+          <option>Bus Station</option>
+          <option>Cafe</option>
+          <option>Campground</option>
+          <option>Car Rental</option>
+          <option>Casino</option>
+          <option>Lodging</option>
+          <option>Movie Theater</option>
+          <option>Museum</option>
+          <option>Night Club</option>
+          <option>Park</option>
+          <option>Parking</option>
+          <option>Restaurant</option>
+          <option>Shopping Mall</option>
+          <option>Stadium</option>
+          <option>Subway Station</option>
+          <option>Taxi Stand</option>
+          <option>Train Station</option>
+          <option>Transit Station</option>
+          <option>Travel Agency</option>
+          <option>Zoo</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-1"></div>
+      <label for="distance" class="col-sm-2 col-form-label">Distance (miles)</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="distance" placeholder="10" ngModel name="distance">
+      </div>
+    </div>
+    <div class="form-group row myCustomRow">
+      <div class="col-sm-1"></div>
+      <label class="col-sm-2 col-form-label">From<span class="redSPot">*</span></label>
+      <div class="col-sm-5">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="locale" id="radios1" value="current" [(ngModel)]="defaultLocale">
+          <label class="form-check-label" for="radios1">
+            Current location
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row myCustomRow">
+      <div class="col-sm-1"></div>
+      <label class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-5">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="locale" id="radios2" value="other" [(ngModel)]="defaultLocale">
+          <label class="form-check-label" for="radios2">
+            Other. Please specify:
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row justify-content-end">
+      <div class="col-sm-8">
+        <input type="text" class="form-control"
+               id="localeOtherDetail" placeholder="Enter a location"
+               ngModel name="localeOtherDetail"
+               [disabled]="defaultLocale == 'current'" required #locationDetail="ngModel">
+        <span class="myform-text" *ngIf="defaultLocale != 'current' && !locationDetail.valid && locationDetail.touched">Please enter a location.</span>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="form-group row">
+    <div class="col-sm-1"></div>
+      <div class="col-sm-10">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!f.valid"
+      ><i class="fas fa-search"></i> Search</button>
+      <button type="button" class="btn btn-outline-secondary" (click)="onClear()">Clear</button>
+      </div>
+    </div>
+    </div>
+  </form>
+    </div>
+  </div>
+</div>
+
+<p>keyword: {{data.keyword}}</p>
+<p>category: {{data.category}}</p>
+<p>distance: {{data.distance}}</p>
+<p>locale: {{data.locale}}</p>
+<p>localeOtherDetail: {{data.localeOtherDetail}}</p>
