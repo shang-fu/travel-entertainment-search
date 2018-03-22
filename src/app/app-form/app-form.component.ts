@@ -12,7 +12,10 @@ export class AppFormComponent implements OnInit {
   defaultCategory = 'Default';
   defaultLocale = 'current';
   currentLat;
-  currentLon;
+  currentLng;
+  nexPageToken;
+  searchResults;
+  isSubmit = false;
 
   data = {
     keyword: '',
@@ -22,22 +25,29 @@ export class AppFormComponent implements OnInit {
     localeOtherDetail: ''
   };
 
-  constructor(private getlocation: LocationService) { }
+  loadedFeature = 'results';
+
+
+  constructor(private locationService: LocationService) { }
 
   ngOnInit() {
-    this.getlocation.getLocation()
+    this.locationService.getLocation()
       .subscribe(
-        (data: Response) => {
-          console.log(data);
-          this.currentLat = data['lat'];
-          this.currentLon = data['lon'];
+        (response) => {
+          console.log('current location: ');
+          console.log(response);
+          this.currentLat = response['lat'];
+          this.currentLng = response['lon'];
         },
-        (error) => console.log(error)
+        (error) => {
+          console.log('find user location not work')
+          console.log(error);
+        }
       );
   }
 
   onSubmit() {
-    console.log(this.signupForm);
+    // console.log(this.signupForm);
     this.data.keyword = this.signupForm.value.searchData.keyword;
     this.data.category = this.signupForm.value.searchData.category;
     if (this.signupForm.value.searchData.distance === '') {
@@ -51,6 +61,25 @@ export class AppFormComponent implements OnInit {
     } else {
       this.data.localeOtherDetail = '';
     }
+
+    this.locationService.searchPlaces(this.data, this.currentLat, this.currentLng)
+      .subscribe(
+        (response) => {
+          console.log('getting search places');
+          console.log(response);
+          this.isSubmit = true;
+          this.nexPageToken = response['next_page_token'];
+          this.searchResults = response['results'];
+          // console.log(this.nexPageToken);
+          // console.log(this.searchResults);
+
+        },
+        (error) => {
+          console.log('search places not work')
+          console.log(error);
+        }
+      );
+
   }
 
   onClear() {
@@ -62,6 +91,10 @@ export class AppFormComponent implements OnInit {
     });
     // this.defaultCategory = 'Default';
     // this.defaultLocale = 'current';
+  }
+
+  onNavigate(feature: string) {
+    this.loadedFeature = feature;
   }
 
 }

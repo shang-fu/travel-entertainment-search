@@ -100,7 +100,7 @@
               <button
                 type="submit"
                 class="btn btn-primary"
-                [disabled]="!f.valid || !currentLat || !currentLon"
+                [disabled]="!f.valid || !currentLat || !currentLng"
               ><i class="fas fa-search"></i> Search</button>
               <button type="button" class="btn btn-outline-secondary" (click)="onClear()">Clear</button>
             </div>
@@ -115,8 +115,11 @@
   </div>
 </div>
 
-<p>keyword: {{data.keyword}}</p>
-<p>category: {{data.category}}</p>
-<p>distance: {{data.distance}}</p>
-<p>locale: {{data.locale}}</p>
-<p>localeOtherDetail: {{data.localeOtherDetail}}</p>
+
+<div *ngIf="isSubmit">
+  <app-header (featureSelected)="onNavigate($event)"></app-header>
+  <app-place-table *ngIf="loadedFeature === 'results'" [places]="searchResults"></app-place-table>
+  <app-favorite-table *ngIf="loadedFeature === 'favorites'"></app-favorite-table>
+</div>
+
+
