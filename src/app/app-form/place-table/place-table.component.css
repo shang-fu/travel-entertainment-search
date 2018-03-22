@@ -1,4 +1,18 @@
-.table-container {
-  margin-right: 10%;
-  margin-left:  10%;
+
+.icon {
+  height: 30px;
+  width: 30px;
+}
+
+.iconimage {
+  height: 100%;
+  width: 100%;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.table > tbody > tr > th {
+  vertical-align: middle;
 }

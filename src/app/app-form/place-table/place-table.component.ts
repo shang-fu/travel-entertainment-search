@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { Place } from '../place.model';
 
 @Component({
@@ -8,10 +8,17 @@ import { Place } from '../place.model';
 })
 export class PlaceTableComponent implements OnInit {
   @Input() places: Object[];
+  @Input() hasDetail: boolean;
+  @Input() hasNext: boolean;
+  @Input() hasPrev: boolean;
+  @Output() pageSelected = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onPage(page: string) {
+    this.pageSelected.emit(page);
+  }
 }

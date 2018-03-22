@@ -1,7 +1,10 @@
 <div class="container">
-  <div class="row">
+  <div class="row justify-content-end">
     <div class="col-xs-12">
-      <button type="button" class="btn btn-outline-secondary">Details <i class="fas fa-angle-right"></i></button>
+      <button type="button"
+              class="btn btn-outline-secondary"
+              [disabled]="!hasDetail"
+              >Details <i class="fas fa-angle-right"></i></button>
     </div>
   </div>
 
@@ -19,12 +22,22 @@
     <tbody>
       <tr *ngFor="let place of places; let i = index">
         <th scope="row">{{ i+1 }}</th>
-        <td><img src="{{ place.icon }}"></td>
+        <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
         <td>{{ place.name }}</td>
         <td>{{ place.vicinity }}</td>
-        <td><i class="far fa-star"></i></td>
-        <td><i class="fas fa-angle-right"></i></td>
+        <td><button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button></td>
+        <td><button type="button" class="btn btn-outline-secondary"><i class="fas fa-angle-right"></i></button></td>
       </tr>
     </tbody>
   </table>
+  <div class="row justify-content-center">
+    <button *ngIf="hasPrev"
+            type="button" class="btn btn-outline-secondary"
+            (click)="onPage('previous')"
+            >Previous</button>
+    <button *ngIf="hasNext"
+            type="button" class="btn btn-outline-secondary"
+            (click)="onPage('next')"
+            >Next</button>
+  </div>
 </div>

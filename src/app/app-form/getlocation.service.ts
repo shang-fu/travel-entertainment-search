@@ -9,18 +9,25 @@ export class LocationService {
     return this.http.get('http://ip-api.com/json');
   }
 
-  searchPlaces(queries: object, lat: string, lng: string) {
-    return this.http.get('/search', {
-      params: new HttpParams()
-        .set('locale', queries['locale'])
-        .append('keyword', queries['keyword'])
-        .append('type', queries['category'])
-        .append('distance', queries['distance'])
-        .append('type', queries['category'])
-        .append('lat', lat)
-        .append('lng', lng)
-        .append('localeOtherDetail', queries['localeOtherDetail'])
-    });
+  searchPlaces(queries: object) {
+    if (queries['token']) {
+      return this.http.get('/search', {
+        params: new HttpParams()
+          .set('pagetoken', queries['token'])
+      });
+    } else {
+      return this.http.get('/search', {
+        params: new HttpParams()
+          .set('locale', queries['locale'])
+          .append('keyword', queries['keyword'])
+          .append('type', queries['category'])
+          .append('distance', queries['distance'])
+          .append('type', queries['category'])
+          .append('lat', queries['lat'])
+          .append('lng', queries['lng'])
+          .append('localeOtherDetail', queries['localeOtherDetail'])
+      });
+    }
   }
 
 }

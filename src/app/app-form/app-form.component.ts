@@ -13,16 +13,32 @@ export class AppFormComponent implements OnInit {
   defaultLocale = 'current';
   currentLat;
   currentLng;
-  nexPageToken;
+
+  currentPage;
+  // nexPageToken;
   searchResults;
   isSubmit = false;
+  hasDetail = false;
+  hasNext = false;
+  hasPrev = false;
 
+  // for page 1
   data = {
     keyword: '',
     category: '',
     distance: '',
     locale: '',
-    localeOtherDetail: ''
+    localeOtherDetail: '',
+    lat: '',
+    lng: ''
+  };
+  // for page 2
+  dataPage2 = {
+    token: ''
+  };
+  // for page 3
+  dataPage3 = {
+    token: ''
   };
 
   loadedFeature = 'results';
@@ -62,13 +78,22 @@ export class AppFormComponent implements OnInit {
       this.data.localeOtherDetail = '';
     }
 
-    this.locationService.searchPlaces(this.data, this.currentLat, this.currentLng)
+    this.data.lat = this.currentLat;
+    this.data.lng = this.currentLng;
+    this.locationService.searchPlaces(this.data)
       .subscribe(
         (response) => {
-          console.log('getting search places');
+          console.log('getting search places - page 1');
           console.log(response);
           this.isSubmit = true;
-          this.nexPageToken = response['next_page_token'];
+          this.currentPage = 'page1';
+          if (response['next_page_token']) {
+            this.hasNext = true;
+            this.dataPage2.token = response['next_page_token'];
+          } else {
+            this.hasNext = false;
+          }
+
           this.searchResults = response['results'];
           // console.log(this.nexPageToken);
           // console.log(this.searchResults);
@@ -95,6 +120,75 @@ export class AppFormComponent implements OnInit {
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;
+  }
+
+  onPage(page: string) {
+    if (this.currentPage === 'page2' && page === 'previous') {
+      this.locationService.searchPlaces(this.data)
+        .subscribe(
+          (response) => {
+            console.log('getting search places - page 1');
+            console.log(response);
+            if (response['next_page_token']) {
+              this.hasNext = true;
+              this.dataPage2.token = response['next_page_token'];
+            } else {
+              this.hasNext = false;
+            }
+            this.searchResults = response['results'];
+            this.hasPrev = false;
+            this.currentPage = 'page1';
+          },
+          (error) => {
+            console.log('search places not work')
+            console.log(error);
+          }
+        );
+
+    } else if ((this.currentPage === 'page1' && page === 'next') ||
+               (this.currentPage === 'page3' && page === 'previous')) {
+      this.locationService.searchPlaces(this.dataPage2)
+        .subscribe(
+          (response) => {
+            console.log('getting search places - page 2');
+            console.log(response);
+            if (response['next_page_token']) {
+              this.hasNext = true;
+              this.dataPage3.token = response['next_page_token'];
+            } else {
+              this.hasNext = false;
+            }
+            this.searchResults = response['results'];
+            this.hasPrev = true;
+            this.currentPage = 'page2';
+          },
+          (error) => {
+            console.log('search places not work')
+            console.log(error);
+          }
+        );
+    } else if (this.currentPage === 'page2' && page === 'next') {
+      this.locationService.searchPlaces(this.dataPage3)
+        .subscribe(
+          (response) => {
+            console.log('getting search places - page 3');
+            console.log(response);
+            if (response['next_page_token']) {
+              this.hasNext = true;
+              // this.dataPage3.token = response['next_page_token'];
+            } else {
+              this.hasNext = false;
+            }
+            this.searchResults = response['results'];
+            this.hasPrev = true;
+            this.currentPage = 'page3';
+          },
+          (error) => {
+            console.log('search places not work')
+            console.log(error);
+          }
+        );
+    }
   }
 
 }
