@@ -191,4 +191,12 @@ export class AppFormComponent implements OnInit {
     }
   }
 
+  onHasDetail(hasDetail: boolean) {
+    this.hasDetail = hasDetail;
+  }
+
+  showList(hasDetail: boolean) {
+    this.hasDetail = hasDetail;
+  }
+
 }

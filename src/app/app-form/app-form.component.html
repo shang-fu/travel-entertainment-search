@@ -118,13 +118,18 @@
 
 <div *ngIf="isSubmit">
   <app-header (featureSelected)="onNavigate($event)"></app-header>
-  <app-place-table *ngIf="loadedFeature === 'results'"
+  <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
                    [places]="searchResults"
-                   [hasDetail]="hasDetail"
                    [hasNext]="hasNext"
                    [hasPrev]="hasPrev"
                    (pageSelected)="onPage($event)"
+                   (hasDetail)="onHasDetail($event)"
   ></app-place-table>
+
+  <app-detail-page *ngIf="loadedFeature === 'results' && hasDetail == true"
+                   (showList)="showList($event)"
+  ></app-detail-page>
+
   <app-favorite-table *ngIf="loadedFeature === 'favorites'"></app-favorite-table>
 </div>
 

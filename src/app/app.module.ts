@@ -12,6 +12,11 @@ import { HeaderComponent } from './app-form/header/header.component';
 import { FavoriteTableComponent } from './app-form/favorite-table/favorite-table.component';
 import { DetailPageComponent } from './app-form/detail-page/detail-page.component';
 import { AgmCoreModule} from '@agm/core';
+import { DetailHeaderComponent } from './app-form/detail-page/detail-header/detail-header.component';
+import { DetailInfoComponent } from './app-form/detail-page/detail-info/detail-info.component';
+import { DetailPhotoComponent } from './app-form/detail-page/detail-photo/detail-photo.component';
+import { DetailMapComponent } from './app-form/detail-page/detail-map/detail-map.component';
+import { DetailReviewComponent } from './app-form/detail-page/detail-review/detail-review.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,12 @@ import { AgmCoreModule} from '@agm/core';
     PlaceTableComponent,
     HeaderComponent,
     FavoriteTableComponent,
-    DetailPageComponent
+    DetailPageComponent,
+    DetailHeaderComponent,
+    DetailInfoComponent,
+    DetailPhotoComponent,
+    DetailMapComponent,
+    DetailReviewComponent
   ],
   imports: [
     BrowserModule,
