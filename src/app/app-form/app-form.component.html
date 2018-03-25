@@ -9,7 +9,7 @@
             <label for="keyword" class="col-sm-2 col-form-label">Keyword<span class="redSPot">*</span></label>
             <div class="col-sm-8">
               <input type="text" class="form-control" id="keyword"
-                     ngModel name="keyword" required pattern="\S+.*"
+                     ngModel name="keyword" required pattern=".*\S+.*"
                      #keyword="ngModel">
               <span class="myform-text" *ngIf="!keyword.valid && keyword.touched">Please enter a keyword.</span>
             </div>
@@ -84,7 +84,7 @@
               <input type="text" class="form-control controls"
                      id="pac-input" placeholder="Enter a location"
                      ngModel name="localeOtherDetail"
-                     [disabled]="defaultLocale == 'current'" required pattern="\S+.*"
+                     [disabled]="defaultLocale == 'current'" required pattern=".*\S+.*"
                      #locationDetail="ngModel">
               <span class="myform-text"
                     *ngIf="defaultLocale != 'current' &&

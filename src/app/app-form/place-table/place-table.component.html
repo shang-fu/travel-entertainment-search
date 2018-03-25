@@ -26,10 +26,17 @@
         <td>{{ place.name }}</td>
         <td>{{ place.vicinity }}</td>
         <td><button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button></td>
-        <td><button type="button" class="btn btn-outline-secondary"><i class="fas fa-angle-right"></i></button></td>
+        <td><button type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="getDetail(place.place_id)"
+                    ><i class="fas fa-angle-right"></i></button></td>
+
       </tr>
     </tbody>
   </table>
+
+  <div #dummy></div>
+
   <div class="row justify-content-center">
     <button *ngIf="hasPrev"
             type="button" class="btn btn-outline-secondary"
