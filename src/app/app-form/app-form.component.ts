@@ -1,13 +1,38 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {LocationService} from './getlocation.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-app-form',
   templateUrl: './app-form.component.html',
-  styleUrls: ['./app-form.component.css']
+  styleUrls: ['./app-form.component.css'],
+  animations: [
+    trigger('detailState', [
+      state('table', style({
+        transform: 'translateX(-100%)'
+      })),
+      state('detail', style({
+        transform: 'translateX(0)'
+      })),
+      transition('table => detail', animate(600)),
+      // transition('detail => table', animate(1000))
+    ]),
+    trigger('tableState', [
+      state('table', style({
+        transform: 'translateX(0)'
+      })),
+      state('detail', style({
+        transform: 'translateX(100%)'
+      })),
+      // transition('table => detail', animate(1000)),
+      transition('detail => table', animate(600))
+    ]),
+  ]
 })
 export class AppFormComponent implements OnInit {
+  state = 'table';
+
   @ViewChild('f') signupForm: NgForm;
   defaultCategory = 'Default';
   defaultLocale = 'current';
@@ -193,10 +218,13 @@ export class AppFormComponent implements OnInit {
 
   onHasDetail(hasDetail: boolean) {
     this.hasDetail = hasDetail;
+    this.state = 'detail';
   }
 
   showList(hasDetail: boolean) {
     this.hasDetail = hasDetail;
+    this.state = 'table';
   }
+
 
 }

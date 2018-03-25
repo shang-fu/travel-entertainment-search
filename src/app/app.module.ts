@@ -17,6 +17,7 @@ import { DetailInfoComponent } from './app-form/detail-page/detail-info/detail-i
 import { DetailPhotoComponent } from './app-form/detail-page/detail-photo/detail-photo.component';
 import { DetailMapComponent } from './app-form/detail-page/detail-map/detail-map.component';
 import { DetailReviewComponent } from './app-form/detail-page/detail-review/detail-review.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DetailReviewComponent } from './app-form/detail-page/detail-review/deta
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ",
       libraries: ["places"]
