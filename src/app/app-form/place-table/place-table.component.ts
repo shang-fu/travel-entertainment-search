@@ -102,9 +102,22 @@ export class PlaceTableComponent implements OnInit {
         if (place.website) {
           $('#detailwebsite').html(`<a  href="${place.website}" target="_blank">${place.website}</a>`);
         }
+
+
+
+        // photos
+        if (place.photos) {
+          let image = place.photos[0].getUrl({maxWidth: place.photos[0].width});
+          console.log(image);
+          $('#detailphoto').append('test');
+
+        }
+
+
       }
     });
     this.hasDetail.emit(true);
+
 
 
 
