@@ -1,6 +1,8 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { } from 'googlemaps';
 
+declare var jquery:any;
+declare var $ :any;
 
 @Component({
   selector: 'app-place-table',
@@ -37,14 +39,12 @@ export class PlaceTableComponent implements OnInit {
     }, function(place, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(place);
-        document.getElementById('detailheader').innerText =  place.name;
-        document.getElementById('detailaddress').innerText =  place.formatted_address;
-        document.getElementById('detailphone').innerText =  place.international_phone_number;
-        // document.getElementById('detailprice').innerHTML =  place.price_level;
-        // document.getElementById('detailrating').innerHTML =  place.rating;
-        document.getElementById('detailgooglepage').innerHTML =  `<a  href="${place.url}" target="_blank">${place.url}</a>`;
-        document.getElementById('detailwebsite').innerHTML =  `<a  href="${place.website}" target="_blank">${place.website}</a>`;
 
+        $('#detailheader').text(place.name);
+        $('#detailaddress').text(place.formatted_address);
+        $('#detailphone').text(place.international_phone_number);
+        $('#detailgooglepage').html(`<a  href="${place.url}" target="_blank">${place.url}</a>`);
+        $('#detailwebsite').html(`<a  href="${place.website}" target="_blank">${place.website}</a>`);
       }
     });
     this.hasDetail.emit(true);

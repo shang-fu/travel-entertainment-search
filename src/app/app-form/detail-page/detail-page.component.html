@@ -1,6 +1,6 @@
 
 
-<div class="container">
+
   <div class="row justify-content-center">
     <h1 id="detailheader"></h1>
   </div>
@@ -12,10 +12,10 @@
     <button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button>
   </div>
 
-  <app-detail-header></app-detail-header>
-  <app-detail-info></app-detail-info>
-  <app-detail-photo></app-detail-photo>
-  <app-detail-map></app-detail-map>
-  <app-detail-review></app-detail-review>
+  <app-detail-header (detailSelected)="onDetailSelected($event)"></app-detail-header>
+  <app-detail-info *ngIf="detailSelected === 'info'"></app-detail-info>
+  <app-detail-photo *ngIf="detailSelected === 'photo'"></app-detail-photo>
+  <app-detail-map *ngIf="detailSelected === 'map'"></app-detail-map>
+  <app-detail-review *ngIf="detailSelected === 'review'"></app-detail-review>
 
-</div>
+

@@ -1,3 +1,30 @@
-<p>
-  detail-header works!
-</p>
+<div style="margin-bottom: 20px">
+  <div class="row justify-content-end">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link"
+           [ngClass]="{active: headerstate === 'info'}"
+           (click)="onSelect('info')"
+        >Info</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           [ngClass]="{active: headerstate === 'photo'}"
+           (click)="onSelect('photo')"
+        >Photos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           [ngClass]="{active: headerstate === 'map'}"
+           (click)="onSelect('map')"
+        >Map</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+           [ngClass]="{active: headerstate === 'review'}"
+           (click)="onSelect('review')"
+        >Reviews</a>
+      </li>
+    </ul>
+  </div>
+</div>

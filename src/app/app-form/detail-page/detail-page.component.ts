@@ -7,6 +7,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class DetailPageComponent implements OnInit {
   @Output() showList = new EventEmitter<boolean>();
+  detailSelected = 'info';
 
   constructor() { }
 
@@ -15,6 +16,10 @@ export class DetailPageComponent implements OnInit {
 
   onShowList() {
     this.showList.emit(false);
+  }
+
+  onDetailSelected($event) {
+    this.detailSelected = $event;
   }
 
 }

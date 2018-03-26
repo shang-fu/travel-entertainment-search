@@ -1,4 +1,4 @@
-<div class="container">
+<div style="margin-bottom: 10px">
   <div class="row justify-content-end">
     <div class="col-xs-12">
       <button type="button"
@@ -7,7 +7,9 @@
               >Details <i class="fas fa-angle-right"></i></button>
     </div>
   </div>
+</div>
 
+<div class="row">
   <table class="table table-hover">
     <thead>
     <tr>
@@ -34,17 +36,18 @@
       </tr>
     </tbody>
   </table>
-
-  <div #dummy></div>
-
-  <div class="row justify-content-center">
-    <button *ngIf="hasPrev"
-            type="button" class="btn btn-outline-secondary"
-            (click)="onPage('previous')"
-            >Previous</button>
-    <button *ngIf="hasNext"
-            type="button" class="btn btn-outline-secondary"
-            (click)="onPage('next')"
-            >Next</button>
-  </div>
 </div>
+
+<div #dummy></div>
+
+<div class="row justify-content-center">
+  <button *ngIf="hasPrev"
+          type="button" class="btn btn-outline-secondary"
+          (click)="onPage('previous')"
+          >Previous</button>
+  <button *ngIf="hasNext"
+          type="button" class="btn btn-outline-secondary"
+          (click)="onPage('next')"
+          >Next</button>
+</div>
+
