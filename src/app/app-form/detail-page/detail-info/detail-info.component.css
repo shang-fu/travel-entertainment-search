@@ -1,0 +1,34 @@
+#detail-star {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+#detail-star::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★';
+  color: lightgray;
+}
+
+#detail-star::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★';
+  color: rgb(219, 115, 53);
+  overflow: hidden;
+}
+
+#detail-star.stars-0:after { width: 0%; }
+#detail-star.stars-10:after { width: 10%; }
+#detail-star.stars-20:after { width: 20%; }
+#detail-star.stars-30:after { width: 30%; }
+#detail-star.stars-40:after { width: 40%; }
+#detail-star.stars-50:after { width: 50%; }
+#detail-star.stars-60:after { width: 60%; }
+#detail-star.stars-70:after { width: 70%; }
+#detail-star.stars-80:after { width: 80%; }
+#detail-star.stars-90:after { width: 90%; }
+#detail-star.stars-100:after { width: 100%; }

@@ -60,6 +60,42 @@ export class PlaceTableComponent implements OnInit {
             $('#detailprice').text('$$$$');
           }
         }
+
+        if (place.rating) {
+          let rate = place.rating;
+          if (rate == 1) {
+            $('#detailrating').prepend(`1.0 `);
+            $('#detail-star').addClass('stars-100');
+          } else if (rate == 2) {
+            $('#detailrating').prepend(`2.0 <span style="color: rgb(219, 115, 53)">★</span>`);
+            $('#detail-star').addClass('stars-100');
+          } else if (rate == 3) {
+            $('#detailrating').prepend(`3.0 <span style="color: rgb(219, 115, 53)">★★</span>`);
+            $('#detail-star').addClass('stars-100');
+          } else if (rate == 4) {
+            $('#detailrating').prepend(`4.0 <span style="color: rgb(219, 115, 53)">★★★</span>`);
+            $('#detail-star').addClass('stars-100');
+          } else if (rate == 5) {
+            $('#detailrating').prepend(`4.0 <span style="color: rgb(219, 115, 53)">★★★★</span>`);
+            $('#detail-star').addClass('stars-100');
+          } else if (0 <= rate && rate < 1 ) {
+            $('#detailrating').prepend(`${rate} `);
+            $('#detail-star').addClass(`stars-${rate * 100}`);
+          } else if (1 < rate && rate < 2 ) {
+            $('#detailrating').prepend(`${rate} <span style="color: rgb(219, 115, 53)">★</span>`);
+            $('#detail-star').addClass(`stars-${Math.round((rate - 1) * 100)}`);
+          } else if (2 < rate && rate < 3 ) {
+            $('#detailrating').prepend(`${rate} <span style="color: rgb(219, 115, 53)">★★</span>`);
+            $('#detail-star').addClass(`stars-${Math.round((rate - 2) * 100)}`);
+          } else if (3 < rate && rate < 4 ) {
+            $('#detailrating').prepend(`${rate} <span style="color: rgb(219, 115, 53)">★★★</span>`);
+            $('#detail-star').addClass(`stars-${Math.round((rate - 3) * 100)}`);
+          } else if (4 < rate && rate < 5 ) {
+            $('#detailrating').prepend(`${rate} <span style="color: rgb(219, 115, 53)">★★★★</span>`);
+            $('#detail-star').addClass(`stars-${Math.round((rate - 4) * 100)}`);
+          }
+        }
+
         if (place.url) {
           $('#detailgooglepage').html(`<a  href="${place.url}" target="_blank">${place.url}</a>`);
         }
