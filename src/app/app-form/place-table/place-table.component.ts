@@ -40,11 +40,32 @@ export class PlaceTableComponent implements OnInit {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         console.log(place);
 
-        $('#detailheader').text(place.name);
-        $('#detailaddress').text(place.formatted_address);
-        $('#detailphone').text(place.international_phone_number);
-        $('#detailgooglepage').html(`<a  href="${place.url}" target="_blank">${place.url}</a>`);
-        $('#detailwebsite').html(`<a  href="${place.website}" target="_blank">${place.website}</a>`);
+        if (place.name) {
+          $('#detailheader').text(place.name);
+        }
+        if (place.formatted_address) {
+          $('#detailaddress').text(place.formatted_address);
+        }
+        if (place.international_phone_number) {
+          $('#detailphone').text(place.international_phone_number);
+        }
+        if (place.price_level) {
+          if (place.price_level == 1) {
+            $('#detailprice').text('$');
+          } else if (place.price_level == 2) {
+            $('#detailprice').text('$$');
+          } else if (place.price_level == 3) {
+            $('#detailprice').text('$$$');
+          } else if (place.price_level == 4) {
+            $('#detailprice').text('$$$$');
+          }
+        }
+        if (place.url) {
+          $('#detailgooglepage').html(`<a  href="${place.url}" target="_blank">${place.url}</a>`);
+        }
+        if (place.website) {
+          $('#detailwebsite').html(`<a  href="${place.website}" target="_blank">${place.website}</a>`);
+        }
       }
     });
     this.hasDetail.emit(true);
