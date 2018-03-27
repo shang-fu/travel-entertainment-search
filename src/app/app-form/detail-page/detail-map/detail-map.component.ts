@@ -15,10 +15,14 @@ export class DetailMapComponent implements OnInit {
   @ViewChild('inputFrom') public inputFrom: ElementRef;
   @ViewChild('detailMap') public detailMap: ElementRef;
   @ViewChild('detailmapPanel') public detailmapPanel: ElementRef;
+  @ViewChild('inputHow') public inputHow: ElementRef;
 
   origin: any;
   destination: any;
   map: any;
+  marker: any;
+  directionsService: any;
+  directionsDisplay: any;
 
   detailname
   detailaddress;
@@ -52,9 +56,16 @@ export class DetailMapComponent implements OnInit {
       zoom: 12
     });
 
-    let marker = new google.maps.Marker({
+    this.marker = new google.maps.Marker({
       position: this.destination,
       map: this.map,
+    });
+
+    this.directionsService = new google.maps.DirectionsService;
+    this.directionsDisplay = new google.maps.DirectionsRenderer({
+      draggable: true,
+      map: this.map,
+      panel: this.detailmapPanel.nativeElement
     });
 
 
@@ -69,20 +80,40 @@ export class DetailMapComponent implements OnInit {
   }
 
   onDisplayRoute() {
-    let directionsService = new google.maps.DirectionsService;
-    let directionsDisplay = new google.maps.DirectionsRenderer({
-      draggable: true,
-      map: this.map,
-      panel: this.detailmapPanel.nativeElement
-    });
+    this.marker = null;
 
-    directionsService.route({
-      origin: this.origin,
+
+    // let directionsService = new google.maps.DirectionsService;
+    // let directionsDisplay = new google.maps.DirectionsRenderer({
+    //   draggable: true,
+    //   map: this.map,
+    //   panel: this.detailmapPanel.nativeElement
+    // });
+
+    let inputValue = this.inputFrom.nativeElement.value;
+    let inputMode = this.inputHow.nativeElement.value.toUpperCase();
+    let travelMode: any;
+    if (inputMode === 'DRIVING') {
+      travelMode = google.maps.TravelMode.DRIVING;
+    } else if (inputMode === 'BICYCLING') {
+      travelMode = google.maps.TravelMode.BICYCLING;
+    } else if (inputMode === 'TRANSIT') {
+      travelMode = google.maps.TravelMode.TRANSIT;
+    } else if (inputMode === 'WALKING') {
+      travelMode = google.maps.TravelMode.WALKING;
+    }
+
+
+    // if (inputValue === 'Your location' || inputValue === 'My location')
+
+    this.directionsService.route({
+      origin: (inputValue === 'Your location' || inputValue === 'My location') ? this.origin : inputValue,
       destination: this.destination,
-      travelMode: google.maps.TravelMode.DRIVING
+      provideRouteAlternatives: true,
+      travelMode: travelMode
     }, (response, status) => {
       if (status === google.maps.DirectionsStatus.OK) {
-        directionsDisplay.setDirections(response);
+        this.directionsDisplay.setDirections(response);
       } else {
         alert('Could not display directions due to: ' + status);
       }
