@@ -1,5 +1,15 @@
-agm-map {
+/*agm-map {*/
+  /*height: 400px;*/
+/*}*/
+
+#detailmap {
   height: 400px;
+  width: 100%;
+}
+
+#detailpano {
+  height: 400px;
+  width: 100%;
 }
 
 @media (min-width: 576px) {

@@ -17,7 +17,10 @@
   <app-detail-header (detailSelected)="onDetailSelected($event)"></app-detail-header>
   <app-detail-info *ngIf="detailSelected === 'info'" [place]="place"></app-detail-info>
   <app-detail-photo *ngIf="detailSelected === 'photo'" [place]="place"></app-detail-photo>
-  <app-detail-map *ngIf="detailSelected === 'map'" [place]="place"></app-detail-map>
+  <app-detail-map *ngIf="detailSelected === 'map'"
+                  [place]="place"
+                  [detailLat]="detailLat"
+                  [detailLng]="detailLng"></app-detail-map>
   <app-detail-review *ngIf="detailSelected === 'review'"></app-detail-review>
 
 

@@ -13,6 +13,8 @@ export class DetailPageComponent implements OnInit {
   @Output() showList = new EventEmitter<boolean>();
   detailSelected = 'info';
   @Input() placeid: string;
+  @Input() detailLat: number;
+  @Input() detailLng: number;
   @ViewChild('dummy') dummymap: ElementRef;
 
   placeheader: string;

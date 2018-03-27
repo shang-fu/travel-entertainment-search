@@ -85,6 +85,7 @@
                      id="pac-input" placeholder="Enter a location"
                      ngModel name="localeOtherDetail"
                      [disabled]="defaultLocale == 'current'" required pattern=".*\S+.*"
+                     #searchElement
                      #locationDetail="ngModel">
               <span class="myform-text"
                     *ngIf="defaultLocale != 'current' &&
@@ -135,7 +136,8 @@
       <app-detail-page *ngIf="loadedFeature === 'results' && hasDetail == true"
                        (showList)="showList()"
                        [placeid]="placeid"
-
+                       [detailLat]="detailLat"
+                       [detailLng]="detailLng"
       ></app-detail-page>
     </div>
 

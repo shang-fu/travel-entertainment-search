@@ -3,7 +3,7 @@
     <div class="form-row">
       <div class="form-group col-md-4">
         <label for="inputFrom">From</label>
-        <input type="text" class="form-control" id="inputFrom" Value="Your Location">
+        <input type="text" class="form-control" id="inputFrom" Value="Your Location" #inputFrom>
       </div>
       <div class="form-group col-md-4">
         <label for="inputTo">To</label>
@@ -27,13 +27,17 @@
 
 
 
-  <div style="height: 40px; width: 40px;">
-    <img class="img-thumbnail" style="height: 100%; width: 100%;" src="assets/images/Pegman.png">
+  <div style="height: 40px; width: 40px; margin-bottom: 10px;">
+    <img *ngIf="view == 'map'" (click)="onSelectView()" class="img-thumbnail" style="height: 100%; width: 100%;" src="assets/images/Pegman.png">
+    <img *ngIf="view == 'street'" (click)="onSelectView()" class="img-thumbnail" style="height: 100%; width: 100%;" src="assets/images/Map.png">
   </div>
 
 
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-  </agm-map>
+  <!--<agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">-->
+    <!--<agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>-->
+  <!--</agm-map>-->
+
+  <div id="detailmap" #detailMap></div>
+  <div id="detailpano" #detailPano></div>
 
 

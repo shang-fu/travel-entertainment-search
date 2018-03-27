@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ElementRef, Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {LocationService} from './getlocation.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { MapsAPILoader } from '@agm/core';
 
 @Component({
   selector: 'app-app-form',
@@ -34,6 +35,9 @@ export class AppFormComponent implements OnInit {
   state = 'table';
 
   @ViewChild('f') signupForm: NgForm;
+  @ViewChild('searchElement') searchElementRef: ElementRef;
+
+
   defaultCategory = 'Default';
   defaultLocale = 'current';
   currentLat;
@@ -44,6 +48,8 @@ export class AppFormComponent implements OnInit {
   searchResults;
   isSubmit = false;
   hasDetail = false;
+  detailLat;
+  detailLng;
   hasNext = false;
   hasPrev = false;
 
@@ -70,9 +76,16 @@ export class AppFormComponent implements OnInit {
   placeid: string;
 
 
-  constructor(private locationService: LocationService) { }
+  constructor(private mapsAPILoader: MapsAPILoader, private locationService: LocationService) { }
 
   ngOnInit() {
+    this.mapsAPILoader.load().then(() => {
+      console.log(this.signupForm);
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+    });
+
     this.locationService.getLocation()
       .subscribe(
         (response) => {
@@ -217,10 +230,12 @@ export class AppFormComponent implements OnInit {
     }
   }
 
-  onHasDetail(placeid: string) {
+  onHasDetail(detail: any) {
     this.hasDetail = true;
     this.state = 'detail';
-    this.placeid = placeid;
+    this.placeid = detail.placeid;
+    this.detailLat = detail.lat;
+    this.detailLng = detail.lng;
   }
 
   showList() {

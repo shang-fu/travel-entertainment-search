@@ -16,7 +16,7 @@ export class PlaceTableComponent implements OnInit {
   @Input() hasPrev: boolean;
   @Output() pageSelected = new EventEmitter<string>();
   @ViewChild('dummy') dummymap: ElementRef;
-  @Output() hasDetail = new EventEmitter<string>();
+  @Output() hasDetail = new EventEmitter<any>();
 
 
   constructor() { }
@@ -125,7 +125,7 @@ export class PlaceTableComponent implements OnInit {
   //
   // }
 
-  getDetail(placeid: string) {
-    this.hasDetail.emit(placeid);
+  getDetail(placeid: string, lat: number, lng: number) {
+    this.hasDetail.emit({'placeid': placeid, 'lat': lat, 'lng': lng});
   }
 }

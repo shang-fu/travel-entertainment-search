@@ -30,7 +30,7 @@
         <td><button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button></td>
         <td><button type="button"
                     class="btn btn-outline-secondary"
-                    (click)="getDetail(place.place_id)"
+                    (click)="getDetail(place.place_id, place.geometry.location.lat, place.geometry.location.lng)"
                     ><i class="fas fa-angle-right"></i></button></td>
 
       </tr>
