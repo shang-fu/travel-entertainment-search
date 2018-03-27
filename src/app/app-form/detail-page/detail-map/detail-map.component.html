@@ -38,6 +38,6 @@
   <!--</agm-map>-->
 
   <div id="detailmap" #detailMap></div>
-  <div id="detailpano" #detailPano></div>
+  <app-detail-pano *ngIf="view == 'street'" [location]="location"></app-detail-pano>
 
 

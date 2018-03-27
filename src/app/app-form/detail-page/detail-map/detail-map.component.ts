@@ -12,7 +12,7 @@ export class DetailMapComponent implements OnInit {
   @Input() detailLng: any;
   @ViewChild('inputFrom') public inputFrom: ElementRef;
   @ViewChild('detailMap') public detailMap: ElementRef;
-  @ViewChild('detailPano') public detailPano: ElementRef;
+  location: any;
 
   detailname
   detailaddress;
@@ -36,28 +36,46 @@ export class DetailMapComponent implements OnInit {
       types: ["address"]
     });
 
-    let location = {lat: this.detailLat, lng: this.detailLng};
+    this.location = {lat: this.detailLat, lng: this.detailLng};
+
+
+
     let map = new google.maps.Map(this.detailMap.nativeElement, {
-      center: location,
+      center: this.location,
       zoom: 12
     });
 
-    let panorama = new google.maps.StreetViewPanorama(
-      this.detailPano.nativeElement, {
-        position: location,
-        pov: {
-          heading: 34,
-          pitch: 10
-        }
-      });
-    // map.setStreetView(panorama);
+    let marker = new google.maps.Marker({
+      position: this.location,
+      map: map,
+    });
 
 
+    // let panorama = new google.maps.StreetViewPanorama(
+    //   this.detailPano.nativeElement, {
+    //     position: location,
+    //     pov: {
+    //       heading: 34,
+    //       pitch: 10
+    //     }
+    //   });
+    // // map.setStreetView(panorama);
 
   }
 
   onSelectView() {
-    this.view = this.view === 'map' ? 'street' : 'map';
+
+    if (this.view === 'map') {
+      this.view = 'street';
+
+
+
+
+    } else if (this.view === 'street') {
+      this.view = 'map';
+
+
+    }
   }
 
 }

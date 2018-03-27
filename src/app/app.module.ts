@@ -18,6 +18,7 @@ import { DetailPhotoComponent } from './app-form/detail-page/detail-photo/detail
 import { DetailMapComponent } from './app-form/detail-page/detail-map/detail-map.component';
 import { DetailReviewComponent } from './app-form/detail-page/detail-review/detail-review.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { DetailPanoComponent } from './app-form/detail-page/detail-map/detail-pano/detail-pano.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DetailInfoComponent,
     DetailPhotoComponent,
     DetailMapComponent,
-    DetailReviewComponent
+    DetailReviewComponent,
+    DetailPanoComponent
   ],
   imports: [
     BrowserModule,
