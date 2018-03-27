@@ -1,3 +1,39 @@
-<p>
-  detail-map works!
-</p>
+
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="inputFrom">From</label>
+        <input type="text" class="form-control" id="inputFrom" Value="Your Location">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputTo">To</label>
+        <input type="text" class="form-control" id="inputTo" value="{{ detailname }}, {{ detailaddress }}" readonly>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputHow">Travel Mode</label>
+        <select class="form-control" id="inputHow" name="category" >
+          <option>Driving</option>
+          <option>Bicycling</option>
+          <option>Transit</option>
+          <option>Walking</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-2">
+        <button id="get-direct" type="submit" class="btn btn-primary">Get Directions</button>
+      </div>
+    </div>
+  </form>
+
+
+
+  <div style="height: 40px; width: 40px;">
+    <img class="img-thumbnail" style="height: 100%; width: 100%;" src="assets/images/Pegman.png">
+  </div>
+
+
+  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+  </agm-map>
+
+

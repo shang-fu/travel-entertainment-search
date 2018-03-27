@@ -1,0 +1,18 @@
+agm-map {
+  height: 400px;
+}
+
+@media (min-width: 576px) {
+  #get-direct {
+    margin-top: 0;
+    margin-left: 0;
+
+  }
+}
+
+@media (min-width: 768px) {
+  #get-direct {
+    margin-top: 31px;
+    margin-left: 20px;
+  }
+}
