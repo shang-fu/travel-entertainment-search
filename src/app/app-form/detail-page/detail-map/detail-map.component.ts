@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-detail-map',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-map.component.css']
 })
 export class DetailMapComponent implements OnInit {
+  @Input() place: any;
 
   constructor() { }
 

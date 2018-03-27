@@ -67,6 +67,7 @@ export class AppFormComponent implements OnInit {
   };
 
   loadedFeature = 'results';
+  placeid: string;
 
 
   constructor(private locationService: LocationService) { }
@@ -216,13 +217,14 @@ export class AppFormComponent implements OnInit {
     }
   }
 
-  onHasDetail(hasDetail: boolean) {
-    this.hasDetail = hasDetail;
+  onHasDetail(placeid: string) {
+    this.hasDetail = true;
     this.state = 'detail';
+    this.placeid = placeid;
   }
 
-  showList(hasDetail: boolean) {
-    this.hasDetail = hasDetail;
+  showList() {
+    this.hasDetail = false;
     this.state = 'table';
   }
 

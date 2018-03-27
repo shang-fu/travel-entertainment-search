@@ -133,7 +133,8 @@
 
     <div [@detailState]="state">
       <app-detail-page *ngIf="loadedFeature === 'results' && hasDetail == true"
-                       (showList)="showList($event)"
+                       (showList)="showList()"
+                       [placeid]="placeid"
 
       ></app-detail-page>
     </div>

@@ -2,7 +2,7 @@
 
 
   <div class="row justify-content-center">
-    <h1 id="detailheader"></h1>
+    <h1 id="detailheader" [attr.value]="placeheader"></h1>
   </div>
   <div class="row justify-content-between">
     <button type="button"
@@ -12,10 +12,12 @@
     <button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button>
   </div>
 
+  <div #dummy></div>
+
   <app-detail-header (detailSelected)="onDetailSelected($event)"></app-detail-header>
-  <app-detail-info *ngIf="detailSelected === 'info'"></app-detail-info>
-  <app-detail-photo *ngIf="detailSelected === 'photo'"></app-detail-photo>
-  <app-detail-map *ngIf="detailSelected === 'map'"></app-detail-map>
+  <app-detail-info *ngIf="detailSelected === 'info'" [place]="place"></app-detail-info>
+  <app-detail-photo *ngIf="detailSelected === 'photo'" [place]="place"></app-detail-photo>
+  <app-detail-map *ngIf="detailSelected === 'map'" [place]="place"></app-detail-map>
   <app-detail-review *ngIf="detailSelected === 'review'"></app-detail-review>
 
 
