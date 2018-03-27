@@ -20,7 +20,10 @@
   <app-detail-map *ngIf="detailSelected === 'map'"
                   [place]="place"
                   [detailLat]="detailLat"
-                  [detailLng]="detailLng"></app-detail-map>
+                  [detailLng]="detailLng"
+                  [currentLat]="currentLat"
+                  [currentLng]="currentLng"
+  ></app-detail-map>
   <app-detail-review *ngIf="detailSelected === 'review'"></app-detail-review>
 
 

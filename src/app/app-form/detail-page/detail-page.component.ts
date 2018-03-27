@@ -15,6 +15,8 @@ export class DetailPageComponent implements OnInit {
   @Input() placeid: string;
   @Input() detailLat: number;
   @Input() detailLng: number;
+  @Input() currentLat: number;
+  @Input() currentLng: number;
   @ViewChild('dummy') dummymap: ElementRef;
 
   placeheader: string;

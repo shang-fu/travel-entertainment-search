@@ -7,7 +7,7 @@ import {Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 })
 export class DetailPanoComponent implements OnInit {
   @ViewChild('detailPano') public detailPano: ElementRef;
-  @Input() location: any;
+  @Input() destination: any;
 
   constructor() { }
 
@@ -15,14 +15,11 @@ export class DetailPanoComponent implements OnInit {
 
     let panorama = new google.maps.StreetViewPanorama(
       this.detailPano.nativeElement, {
-        position: this.location,
+        position: this.destination,
         pov: {
           heading: 34,
           pitch: 10
         }
       });
-
-
   }
-
 }

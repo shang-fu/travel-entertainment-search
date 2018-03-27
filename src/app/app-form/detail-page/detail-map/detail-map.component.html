@@ -20,7 +20,7 @@
       </div>
 
       <div class="form-group col-md-2">
-        <button id="get-direct" type="submit" class="btn btn-primary">Get Directions</button>
+        <button id="get-direct" type="submit" class="btn btn-primary" (click)="onDisplayRoute()">Get Directions</button>
       </div>
     </div>
   </form>
@@ -33,11 +33,11 @@
   </div>
 
 
-  <!--<agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">-->
-    <!--<agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>-->
-  <!--</agm-map>-->
-
+  <app-detail-pano *ngIf="view == 'street'" [destination]="destination"></app-detail-pano>
   <div id="detailmap" #detailMap></div>
-  <app-detail-pano *ngIf="view == 'street'" [location]="location"></app-detail-pano>
+
+
+
+  <div id="detailmap-panel" #detailmapPanel></div>
 
 

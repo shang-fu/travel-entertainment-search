@@ -10,9 +10,15 @@ export class DetailMapComponent implements OnInit {
   @Input() place: any;
   @Input() detailLat: any;
   @Input() detailLng: any;
+  @Input() currentLat: any;
+  @Input() currentLng: any;
   @ViewChild('inputFrom') public inputFrom: ElementRef;
   @ViewChild('detailMap') public detailMap: ElementRef;
-  location: any;
+  @ViewChild('detailmapPanel') public detailmapPanel: ElementRef;
+
+  origin: any;
+  destination: any;
+  map: any;
 
   detailname
   detailaddress;
@@ -36,46 +42,54 @@ export class DetailMapComponent implements OnInit {
       types: ["address"]
     });
 
-    this.location = {lat: this.detailLat, lng: this.detailLng};
+    this.origin = {lat: this.currentLat, lng: this.currentLng};
+    this.destination = {lat: this.detailLat, lng: this.detailLng};
 
 
 
-    let map = new google.maps.Map(this.detailMap.nativeElement, {
-      center: this.location,
+    this.map = new google.maps.Map(this.detailMap.nativeElement, {
+      center: this.destination,
       zoom: 12
     });
 
     let marker = new google.maps.Marker({
-      position: this.location,
-      map: map,
+      position: this.destination,
+      map: this.map,
     });
 
-
-    // let panorama = new google.maps.StreetViewPanorama(
-    //   this.detailPano.nativeElement, {
-    //     position: location,
-    //     pov: {
-    //       heading: 34,
-    //       pitch: 10
-    //     }
-    //   });
-    // // map.setStreetView(panorama);
 
   }
 
   onSelectView() {
-
     if (this.view === 'map') {
       this.view = 'street';
-
-
-
-
     } else if (this.view === 'street') {
       this.view = 'map';
-
-
     }
   }
+
+  onDisplayRoute() {
+    let directionsService = new google.maps.DirectionsService;
+    let directionsDisplay = new google.maps.DirectionsRenderer({
+      draggable: true,
+      map: this.map,
+      panel: this.detailmapPanel.nativeElement
+    });
+
+    directionsService.route({
+      origin: this.origin,
+      destination: this.destination,
+      travelMode: google.maps.TravelMode.DRIVING
+    }, (response, status) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        directionsDisplay.setDirections(response);
+      } else {
+        alert('Could not display directions due to: ' + status);
+      }
+    });
+
+
+  }
+
 
 }
