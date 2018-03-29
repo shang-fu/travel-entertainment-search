@@ -34,10 +34,10 @@
 #detail-star.stars-100:after { width: 100%; }
 
 
-#popup-hours {
+#detailPopupButton {
   text-decoration: underline;
   color: #007bff;
 }
-#popup-hours:hover {
+#detailPopupButton:hover {
   color: rgb(28, 95, 182);
 }

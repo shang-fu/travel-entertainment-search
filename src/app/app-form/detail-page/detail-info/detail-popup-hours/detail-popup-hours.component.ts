@@ -13,6 +13,7 @@ export class DetailPopupHoursComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log(this.weekDay);
   }
 
 }

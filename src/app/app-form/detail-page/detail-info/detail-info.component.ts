@@ -143,6 +143,17 @@ export class DetailInfoComponent implements OnInit {
             } else {
               $('#detailhours').prepend(`<span>Closed   </span>`);
             }
+
+
+
+
+            $( "#detailPopupButton" ).click(() => {
+              $( "#detailPopup" ).animate({ "display": "block" }, "slow" );
+            });
+
+
+
+
           } else {
             $('#detailhours-row').remove();
           }
