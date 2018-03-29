@@ -119,8 +119,8 @@ export class DetailInfoComponent implements OnInit {
             const localDayToNum = Number(moment().utc(this.place.utc_offset).format('d')) - 1;
             // const matchLocalDayToNum = localDayToNum === -1 ? 6 : localDayToNum;
             console.log(localDayToNum);
-            this.localDayToNum = localDayToNum;
-            this.weekDay = weekDay;
+            // this.localDayToNum = localDayToNum;
+            // this.weekDay = weekDay;
             // const formattedHours = [];
             // for (let i = 0; i < periods.length; i++) {
             //   let data: object;
@@ -144,12 +144,16 @@ export class DetailInfoComponent implements OnInit {
               $('#detailhours').prepend(`<span>Closed   </span>`);
             }
 
+            for (let i = 0; i < weekDay.length; i++) {
+              $('#detailPopupList').append(`<li class="list-group-item">${weekDay[i]}</li>`);
+            }
 
 
 
-            $( "#detailPopupButton" ).click(() => {
-              $( "#detailPopup" ).animate({ "display": "block" }, "slow" );
-            });
+            // $( "#detailPopupButton" ).click(() => {
+            //   $( "#detailPopup" )
+            //     .animate({ 'display': 'block', 'width': '300px', 'height': '300px', 'position': 'absolute'}, 'slow' );
+            // });
 
 
 

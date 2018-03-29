@@ -41,3 +41,7 @@
 #detailPopupButton:hover {
   color: rgb(28, 95, 182);
 }
+
+div#detailPopup {
+  display: none;
+}
