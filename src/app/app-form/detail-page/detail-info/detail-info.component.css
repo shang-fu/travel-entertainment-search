@@ -32,3 +32,12 @@
 #detail-star.stars-80:after { width: 80%; }
 #detail-star.stars-90:after { width: 90%; }
 #detail-star.stars-100:after { width: 100%; }
+
+
+#popup-hours {
+  text-decoration: underline;
+  color: #007bff;
+}
+#popup-hours:hover {
+  color: rgb(28, 95, 182);
+}

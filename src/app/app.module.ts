@@ -19,6 +19,7 @@ import { DetailMapComponent } from './app-form/detail-page/detail-map/detail-map
 import { DetailReviewComponent } from './app-form/detail-page/detail-review/detail-review.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DetailPanoComponent } from './app-form/detail-page/detail-map/detail-pano/detail-pano.component';
+import { DetailPopupHoursComponent } from './app-form/detail-page/detail-info/detail-popup-hours/detail-popup-hours.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DetailPanoComponent } from './app-form/detail-page/detail-map/detail-pa
     DetailPhotoComponent,
     DetailMapComponent,
     DetailReviewComponent,
-    DetailPanoComponent
+    DetailPanoComponent,
+    DetailPopupHoursComponent
   ],
   imports: [
     BrowserModule,

@@ -2,35 +2,37 @@
 
 <table class="table table-striped">
   <tbody>
-  <tr>
+  <tr id="detailaddress-row">
     <th scope="row">Address</th>
     <td id="detailaddress"></td>
   </tr>
-  <tr>
+  <tr id="detailphone-row">
     <th scope="row">Phone Number</th>
     <td id="detailphone"></td>
   </tr>
-  <tr>
+  <tr id="detailprice-row">
     <th scope="row">Price Level</th>
     <td id="detailprice"></td>
   </tr>
-  <tr>
+  <tr id="detailrating-row">
     <th scope="row">Rating</th>
     <td id="detailrating"><span id="detail-star">★</span></td>
   </tr>
-  <tr>
+  <tr id="detailgooglepage-row">
     <th scope="row">Google Page</th>
     <td id="detailgooglepage"></td>
   </tr>
-  <tr>
+  <tr id="detailwebsite-row">
     <th scope="row">Website</th>
     <td id="detailwebsite"></td>
   </tr>
-  <tr>
+  <tr id="detailhours-row">
     <th scope="row">Hours</th>
-    <td id="detailhours"></td>
+    <td id="detailhours"><span id="popup-hours">Daily open hours</span></td>
   </tr>
   </tbody>
 </table>
+
+<app-detail-popup-hours [localDayToNum]="localDayToNum" [weekDay]="weekDay"></app-detail-popup-hours>
 
 
