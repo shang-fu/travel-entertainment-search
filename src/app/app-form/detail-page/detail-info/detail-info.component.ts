@@ -2,12 +2,29 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
 declare var jquery: any;
 declare var $: any;
 import * as moment from 'moment';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 @Component({
   selector: 'app-detail-info',
   templateUrl: './detail-info.component.html',
-  styleUrls: ['./detail-info.component.css']
+  styleUrls: ['./detail-info.component.css'],
+
+  animations: [
+    trigger('popState', [
+      state('hide', style({
+        display: 'none',
+        transform: 'translateY(-300%)'
+      })),
+      state('pop', style({
+        display: 'block',
+        transform: 'translateY(-100%)',
+      })),
+      transition('hide => pop', animate(600)),
+      transition('pop => hide', animate(1000))
+    ]),
+  ]
+
 })
 export class DetailInfoComponent implements OnInit {
   place: any;
@@ -16,6 +33,7 @@ export class DetailInfoComponent implements OnInit {
   @ViewChild('dummy') dummymap: ElementRef;
   localDayToNum;
   weekDay;
+  state = 'hide';
 
   constructor() { }
 
@@ -116,7 +134,7 @@ export class DetailInfoComponent implements OnInit {
             const targetHoursData = this.place.opening_hours;
             // const periods = targetHoursData.periods;
             const weekDay = targetHoursData.weekday_text;
-            const localDayToNum = Number(moment().utc(this.place.utc_offset).format('d')) - 1;
+            const localDayToNum = Number(moment().utcOffset(this.place.utc_offset).format('d')) - 1;
             // const matchLocalDayToNum = localDayToNum === -1 ? 6 : localDayToNum;
             console.log(localDayToNum);
             // this.localDayToNum = localDayToNum;
@@ -144,7 +162,12 @@ export class DetailInfoComponent implements OnInit {
               $('#detailhours').prepend(`<span>Closed   </span>`);
             }
 
-            for (let i = 0; i < weekDay.length; i++) {
+            $('#detailPopupList').append(`<li class="list-group-item"><strong>${weekDay[localDayToNum]}</strong></li>`);
+
+            for (let i = localDayToNum + 1; i < weekDay.length; i++) {
+              $('#detailPopupList').append(`<li class="list-group-item">${weekDay[i]}</li>`);
+            }
+            for (let i = 0; i < localDayToNum; i++) {
               $('#detailPopupList').append(`<li class="list-group-item">${weekDay[i]}</li>`);
             }
 
@@ -170,4 +193,11 @@ export class DetailInfoComponent implements OnInit {
     });
   }
 
+  onPop() {
+    this.state = 'pop';
+  }
+
+  onClose() {
+    this.state = 'hide';
+  }
 }

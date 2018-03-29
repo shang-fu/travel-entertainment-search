@@ -1,5 +1,6 @@
 <div #dummy></div>
 
+
 <table class="table table-striped">
   <tbody>
   <tr id="detailaddress-row">
@@ -28,26 +29,29 @@
   </tr>
   <tr id="detailhours-row">
     <th scope="row">Hours</th>
-    <td id="detailhours"><span id="detailPopupButton">Daily open hours</span></td>
+    <td id="detailhours"><span id="detailPopupButton" (click)="onPop()">Daily open hours</span></td>
   </tr>
   </tbody>
 </table>
 
-<div id="detailPopup">
-  <div class="modal-header">
-    <h5 class="modal-title">Open hours</h5>
-    <button type="button" class="close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <ul id="detailPopupList" class="list-group list-group-flush">
-    </ul>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary">Save changes</button>
-    <button type="button" class="btn btn-secondary">Close</button>
+
+
+<div [@popState]="state" id="popupWindow" class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Open Hours</h5>
+      <button type="button" class="close">
+        <span (click)="onClose()">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ul id="detailPopupList" class="list-group list-group-flush">
+
+      </ul>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="onClose()">Close</button>
+    </div>
   </div>
 </div>
-
 

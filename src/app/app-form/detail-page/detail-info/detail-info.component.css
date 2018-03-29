@@ -40,8 +40,13 @@
 }
 #detailPopupButton:hover {
   color: rgb(28, 95, 182);
+  cursor: pointer;
 }
 
 div#detailPopup {
   display: none;
 }
+
+/*#popupWindow {*/
+  /*position: fixed;*/
+/*}*/
