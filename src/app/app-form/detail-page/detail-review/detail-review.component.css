@@ -1,0 +1,12 @@
+.star {
+  color: rgb(219, 115, 53);
+}
+
+.roundCorner {
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  margin-top: 10px;
+  border-color: rgb(211,211,211);
+  padding: 5px;
+  width: 100%;
+}
