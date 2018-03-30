@@ -3,25 +3,20 @@ var express 			= require('express'),
 	bodyParser 			= require('body-parser'),
 	app					= express();
 	https				= require('https');
-	search				= require('./routes/search');
-
+	search 				= require('./routes/search');
+	yelp				= require('./routes/yelp');
 
 app.use(express.static("dist"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
-app.use('/search', search)
+app.use('/search', search);
+app.use('/yelp', yelp);
 
-var apikey = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
+// var apikey = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
 
 app.get("/", function(req, res) {
 	res.render('index');
 });
-
-// app.listen(3000, function(){
-// 	console.log("SERVER IS RUNNING");
-// });
-
-
 
 
 app.set('port', 4200);

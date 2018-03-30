@@ -1,7 +1,9 @@
+'use strict';
+
 var express = require('express');
 var router  = express.Router();
 var request = require("request");
-var apikey  = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
+const apikey  = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
 
 router.get("/", function(req, res) {
 	console.log("Queries are ...")
@@ -69,7 +71,6 @@ router.get("/", function(req, res) {
 				} else {
 					if (response.statusCode == 200) {
 						var data = JSON.parse(body)['results'][0]['geometry']['location'];
-						// console.log(data);
 						location = data['lat'] + ',' + data['lng'];
 						console.log(data);
 						search();
@@ -78,20 +79,10 @@ router.get("/", function(req, res) {
 				}
 			});
 		} else {
-			console.log('Something wrong..')
+			console.log('Something wrong..');
 		}
 	}
 
-
-
-
-// console.log(location);
-
-
-
-// https://maps.googleapis.com/maps/api/place/nearbysearch/json?pagetoken=CsQDwAEAAKeY-E4fo13s22PCc6_7ACE1jJ9dD0-M6V2jgc8lcNYDjVIAr9ul2Ubdtt8Jo0dwERZZZeErzMr_k7OnMkzdcSxor6XdW66JcveRp_96uuvhhJIlsJdfVmcov2-VWlYeHhCXbeDQUZDWif5mUC8PLIiHG0zWCh455RHHZZ0ResEEJLgmX5SNiPybcUubbNLaVabNGYay34ocGmEJVfaH5Odgx8cN652_jpzLl7x-YRYVqFbgJE9MeiLB1U6NMPur22peEfYb7OYywsw6z0fETFDhBH1VGPIymPlN7VF9BK4YNS5zaKDHY3-EuUCRKeOYM7k0PHq-1pgHPs8VDonIU6AH0xHX29NOBJfhzXRhdKfBdAmD_zYqyD0FQxxZEfbdp8854kAKTnCS4_CWur_RBxT9UJXKvejf5iDIS9tjL6uYJi3RPOyO6waUA4ZonZPzolQ4RlqI8K_nddCJa5bMD5wEy44V00U_VluVyTnZCSDiexP-4WiYDzn9KjcAbWUPytPvg7JhYRkSCJxZAiaswDirjmx3YHw27YoxfNo9FEd-Oyck-OpokPj-cMxj81ipjfYDRWC4nxrCvnzRJiQrfRESEFby1NO-8SYBJJ40y8VGIdIaFALkZhETpBNdO0ZkRRFg9IBIxrBO&key=AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ
-
-
-})
+});
 
 module.exports = router;
