@@ -16,3 +16,7 @@
 .table > tbody > tr > th {
   vertical-align: middle;
 }
+
+.detailBackground {
+  background-color: rgb(245, 218, 152);
+}

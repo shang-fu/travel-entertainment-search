@@ -17,6 +17,7 @@ export class PlaceTableComponent implements OnInit {
   @Output() pageSelected = new EventEmitter<string>();
   @ViewChild('dummy') dummymap: ElementRef;
   @Output() hasDetail = new EventEmitter<any>();
+  @Input() detailPlace;
 
 
   constructor() { }

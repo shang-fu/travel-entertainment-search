@@ -74,6 +74,7 @@ export class AppFormComponent implements OnInit {
 
   loadedFeature = 'results';
   placeid: string;
+  detailPlace;
 
 
   constructor(private mapsAPILoader: MapsAPILoader, private locationService: LocationService) { }
@@ -236,6 +237,8 @@ export class AppFormComponent implements OnInit {
     this.placeid = detail.placeid;
     this.detailLat = detail.lat;
     this.detailLng = detail.lng;
+    this.detailPlace = {'placeid': detail.placeid, 'lat': detail.lat, 'lng': detail.lng}
+
   }
 
   showList() {
