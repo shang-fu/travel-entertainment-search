@@ -189,8 +189,16 @@ export class DetailInfoComponent implements OnInit {
             $('#detailhours-row').remove();
           }
 
+          let url = `https://twitter.com/intent/tweet?text=` +
+            encodeURI(`Check out ${place.name} located at ${place.formatted_address}. Website: `);
+          if (place.website != undefined) {
+            url += `&url=` + encodeURI(`${place.website}`);
+          } else {
+            url += `&url=` + encodeURI(`${place.url}`);
+          }
+          url += `&hashtags=` + encodeURI(`TravelAndEntertainmentSearch`);
 
-
+          $('#twitterButton').attr('href', url);
 
         }
       }
