@@ -53,6 +53,10 @@ export class DetailInfoComponent implements OnInit {
 
 
         if (this.place != undefined) {
+          if (this.place.name != undefined) {
+            $('#detailheader').text(this.place.name);
+          }
+
           if (this.place.formatted_address != undefined) {
             $('#detailaddress').text(this.place.formatted_address);
           } else {

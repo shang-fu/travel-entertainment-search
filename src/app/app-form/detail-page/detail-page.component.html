@@ -2,15 +2,31 @@
 
 
   <div class="row justify-content-center">
-    <h1 id="detailheader" [attr.value]="placeheader"></h1>
+    <h1 id="detailheader"></h1>
   </div>
-  <div class="row justify-content-between">
-    <button type="button"
-            class="btn btn-outline-secondary"
-            (click)="onShowList()"
-    ><i class="fas fa-angle-left"></i> List</button>
-    <button type="button" class="btn btn-outline-secondary"><i class="fas fa-star"></i></button>
+
+
+
+
+  <div class="d-flex">
+    <div class="mr-auto p-2">
+      <button type="button"
+              class="btn btn-outline-secondary"
+              (click)="onShowList()"
+      ><i class="fas fa-angle-left"></i> List</button>
+    </div>
+    <div class="p-2">
+      <button type="button" class="btn btn-outline-secondary"><i class="far fa-star"></i></button>
+    </div>
+    <div class="p-2">
+      <div style="height: 38px; width: 44px; margin-bottom: 10px;">
+        <img class="imgHover" style="height: 100%; width: 100%;" src="assets/images/Twitter.png">
+      </div>
+    </div>
   </div>
+
+
+
 
 
 

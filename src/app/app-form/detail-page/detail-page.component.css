@@ -1,0 +1,4 @@
+.imgHover:hover {
+  border-color: rgb(109, 117, 124);
+  cursor: pointer;
+}

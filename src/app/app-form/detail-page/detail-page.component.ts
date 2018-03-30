@@ -18,8 +18,6 @@ export class DetailPageComponent implements OnInit {
   @Input() currentLat: number;
   @Input() currentLng: number;
 
-
-  placeheader: string;
   place: any;
 
   constructor() {}
