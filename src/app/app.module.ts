@@ -20,6 +20,7 @@ import { DetailReviewComponent } from './app-form/detail-page/detail-review/deta
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { DetailPanoComponent } from './app-form/detail-page/detail-map/detail-pano/detail-pano.component';
 import { DetailPopupHoursComponent } from './app-form/detail-page/detail-info/detail-popup-hours/detail-popup-hours.component';
+import { YelpService} from './app-form/detail-page/detail-review/yelp.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { DetailPopupHoursComponent } from './app-form/detail-page/detail-info/de
       libraries: ["places"]
     })
   ],
-  providers: [LocationService],
+  providers: [LocationService, YelpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

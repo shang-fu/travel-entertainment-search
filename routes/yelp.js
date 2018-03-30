@@ -16,19 +16,21 @@ router.get("/", function(req, res) {
 
 
 	client.businessMatch('best', {
-		// name: req.query.name,
-		// address1: req.query.address1,
-		// address2: req.query.address2,
-		// city: req.query.city,
-		// state: req.query.state,
-		// country: req.query.country
+		name: req.query.name,
+		address1: req.query.address1,
+		address2: req.query.address2,
+		address3: req.query.address3,
+		city: req.query.city,
+		state: req.query.state,
+		country: req.query.country
 
-		name: 'Pannikin Coffee & Tea',
-		address1: '510 N Coast Hwy 101',
-		address2: 'Encinitas, CA 92024',
-		city: 'Encinitas',
-		state: 'CA',
-		country: 'US'
+		// name: 'Pannikin Coffee & Tea',
+		// address1: '510 N Coast Hwy 101',
+		// address2: 'Encinitas',
+		// address3: 'CA 92024';
+		// city: 'Encinitas',
+		// state: 'CA',
+		// country: 'US'
 
 
 		
@@ -37,7 +39,7 @@ router.get("/", function(req, res) {
 		console.log(data);
 		console.log(data.businesses[0].location.address1);
 		console.log(req.query.address1);
-		
+
 
 		if (data.businesses.length != 0 && data.businesses[0].location.address1 == req.query.address1) {
 			console.log('Finding the correct location');

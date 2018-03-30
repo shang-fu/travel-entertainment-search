@@ -1,4 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {YelpService} from './yelp.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-detail-review',
@@ -12,26 +14,46 @@ export class DetailReviewComponent implements OnInit {
   googleReviews: Array<any>;
   yelpReviews: Array<any>;
   yelpReviewsOriginal: Array<any>;
+  inUSA = true;
 
-  constructor() { }
+  constructor(private yelp: YelpService) { }
 
   ngOnInit() {
     this.googleReviews = this.place.reviews;
-    // let temp_array = [];
-    // for (let i = 1; i < this.place.reviews.length; i++) {
-    //   let data = {
-    //     name: this.place.reviews[i].author_name,
-    //     url: this.place.reviews[i].author_url,
-    //     photo: this.place.reviews[i].profile_photo_url,
-    //     rate: this.place.reviews[i].rating,
-    //     text: this.place.reviews[i].text,
-    //     time: this.place.reviews[i].time,
-    //     formatted_time: new Date(1522729800000)
-    //   };
-    //   temp_array.push(data);
-    // }
-    // this.googleReviews = temp_array;
-    console.log(this.googleReviews);
+    // console.log(this.googleReviews);
+
+
+    const yelpAddress = this.place.formatted_address.split(', ');
+    console.log(yelpAddress);
+    if (yelpAddress[3] !== 'USA') {
+      this.inUSA = false;
+    }
+    if (this.inUSA === true) {
+      const yelpRequest = {
+        name: this.place.name,
+        address1: yelpAddress[0],
+        address2: yelpAddress[1],
+        address3: yelpAddress[2],
+        city: yelpAddress[1],
+        state: yelpAddress[2].split(' ')[0],
+        country: 'US'
+      };
+
+      this.yelp.getReviews(yelpRequest)
+        .subscribe((response) => {
+          console.log('yelp reviews...');
+          console.log(response);
+          console.log(response['reviews']);
+          this.yelpReviewsOriginal = response['reviews'];
+          this.yelpReviews = JSON.parse(JSON.stringify(response['reviews']));
+        }, (error) => {
+          console.log('find yelp reviews not work')
+          console.log(error);
+        });
+    }
+
+
+
   }
 
 
@@ -49,35 +71,47 @@ export class DetailReviewComponent implements OnInit {
   sortReviews() {
     if (this.order === 'Default Order') {
       this.googleReviews = this.place.reviews;
-      // this.yelpReviews = this.yelpReviewsOriginal;
+      if (this.inUSA === true) {
+        this.yelpReviews = JSON.parse(JSON.stringify(this.yelpReviewsOriginal));
+        console.log(this.yelpReviews);
+        console.log(this.yelpReviewsOriginal);
+      }
     } else if (this.order === 'Most Recent') {
       this.googleReviews.sort((a, b) => {
         return b.time - a.time;
       });
-      // this.yelpReviews.sort((a, b) => {
-      //   return b.time - a.time;
-      // });
+      if (this.inUSA === true) {
+        this.yelpReviews.sort((a, b) => {
+          return Number(moment(b['time_created']).format('x')) - Number(moment(a['time_created']).format('x'));
+        });
+      }
     } else if (this.order === 'Least Recent') {
       this.googleReviews.sort((a, b) => {
         return a.time - b.time;
       });
-      // this.yelpReviews.sort((a, b) => {
-      //   return b.time - a.time;
-      // });
+      if (this.inUSA === true) {
+        this.yelpReviews.sort((a, b) => {
+          return Number(moment(a['time_created']).format('x')) - Number(moment(b['time_created']).format('x'));
+        });
+      }
     } else if (this.order === 'Highest Rating') {
       this.googleReviews.sort((a, b) => {
         return b.rating - a.rating;
       });
-      // this.yelpReviews.sort((a, b) => {
-      //   return b.rating - a.rating;
-      // });
+      if (this.inUSA === true) {
+        this.yelpReviews.sort((a, b) => {
+          return b.rating - a.rating;
+        });
+      }
     } else if (this.order === 'Lowest Rating') {
       this.googleReviews.sort((a, b) => {
         return a.rating - b.rating;
       });
-      // this.yelpReviews.sort((a, b) => {
-      //   return b.rating - a.rating;
-      // });
+      if (this.inUSA === true) {
+        this.yelpReviews.sort((a, b) => {
+          return a.rating - b.rating;
+        });
+      }
     }
 
 
