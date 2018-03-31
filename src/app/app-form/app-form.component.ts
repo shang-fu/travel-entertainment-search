@@ -73,6 +73,7 @@ export class AppFormComponent implements OnInit {
   };
 
   loadedFeature = 'results';
+  feature = 'results'
   placeid: string;
   detailPlace;
 
@@ -162,15 +163,17 @@ export class AppFormComponent implements OnInit {
     this.signupForm.reset({
       searchData: {
         category: 'Default',
-        locale: 'current'
+        locale: 'current',
+        distance: ''
       }
     });
-    // this.defaultCategory = 'Default';
-    // this.defaultLocale = 'current';
+    this.feature = 'results';
+    this.isSubmit = false;
   }
 
   onNavigate(feature: string) {
     this.loadedFeature = feature;
+    this.feature = feature;
   }
 
   onPage(page: string) {

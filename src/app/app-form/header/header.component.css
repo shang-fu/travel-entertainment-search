@@ -1,1 +1,16 @@
+.notSelectedButton {
+  color: #007bff;
+  background-color: #fff;
+  border-color: #fff;
+}
 
+.primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.primary:hover {
+  background-color: rgb(36,107,210);
+  border-color: rgb(36,107,210);
+}
