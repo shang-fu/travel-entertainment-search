@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-favorite-table',
@@ -16,8 +17,15 @@ export class FavoriteTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  getDetail(placeid: string, lat: number, lng: number) {
-    this.hasDetail.emit({'placeid': placeid, 'lat': lat, 'lng': lng});
+  getDetail(placeid: string, icon: string, name: string, address: string, lat: number, lng: number) {
+    this.hasDetail.emit({
+      'id': placeid,
+      'icon': icon,
+      'name': name,
+      'address': address,
+      'lat': lat,
+      'lng': lng
+    });
   }
 
   onFavRemove(placeid: string) {

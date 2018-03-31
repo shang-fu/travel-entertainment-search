@@ -15,9 +15,30 @@
               (click)="onShowList()"
       ><i class="fas fa-angle-left"></i> List</button>
     </div>
-    <div class="p-2">
-      <button type="button" class="btn btn-outline-secondary"><i class="far fa-star"></i></button>
+
+
+
+
+    <div *ngIf="localStorageFormattedMap[placeid] === undefined">
+      <div class="p-2">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                (click)="onFavSave(placeid, detailIcon, detailName, detailAddress, detailLat, detailLng)"
+        ><i class="far fa-star"></i></button>
+      </div>
     </div>
+    <div *ngIf="localStorageFormattedMap[placeid] !== undefined">
+      <div class="p-2">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                style="color: rgb(249, 213, 86)"
+                (click)="onFavRemove(placeid)"
+        ><i class="fas fa-star"></i></button>
+      </div>
+    </div>
+
+
+
     <div class="p-2">
       <div style="height: 38px; width: 44px; margin-bottom: 10px;">
         <a id="twitterButton" class="twitter-share-button">

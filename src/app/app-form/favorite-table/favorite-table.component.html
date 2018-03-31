@@ -4,7 +4,7 @@
       <button type="button"
               class="btn btn-outline-secondary"
               [disabled]="detailPlace == undefined"
-              (click)="getDetail(detailPlace.placeid, detailPlace.lat, detailPlace.lng)"
+              (click)="getDetail(detailPlace.placeid, detailPlace.icon, detailPlace.name, detailPlace.address, detailPlace.lat, detailPlace.lng)"
       >Details <i class="fas fa-angle-right"></i></button>
     </div>
   </div>
@@ -35,7 +35,7 @@
       ><i class="fas fa-trash-alt"></i></button></td>
       <td><button type="button"
                   class="btn btn-outline-secondary"
-                  (click)="getDetail(place.id, place.lat, place.lng)"
+                  (click)="getDetail(place.id, place.icon, place.name, place.address, place.lat, place.lng)"
       ><i class="fas fa-angle-right"></i></button></td>
 
     </tr>

@@ -33,8 +33,15 @@ export class PlaceTableComponent implements OnInit {
     this.pageSelected.emit(page);
   }
 
-  getDetail(placeid: string, lat: number, lng: number) {
-    this.hasDetail.emit({'placeid': placeid, 'lat': lat, 'lng': lng});
+  getDetail(placeid: string, icon: string, name: string, address: string, lat: number, lng: number) {
+    this.hasDetail.emit({
+      'id': placeid,
+      'icon': icon,
+      'name': name,
+      'address': address,
+      'lat': lat,
+      'lng': lng
+    });
   }
 
   onFavSave(placeid: string, icon: string, name: string, address: string, lat: number, lng: number) {

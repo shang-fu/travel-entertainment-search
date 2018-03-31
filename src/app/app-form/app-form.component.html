@@ -134,27 +134,36 @@
                        [localStorageFormattedMap]="localStorageFormattedMap"
                        (localStorageChangeEvent)="onUpdateLocalStorage()"
       ></app-place-table>
+
+      <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
+                          [detailPlace]="detailPlace"
+                          (hasDetail)="onHasDetail($event)"
+                          [localStorageFormattedList]="localStorageFormattedList"
+                          (localStorageChangeEvent)="onUpdateLocalStorage()"
+      ></app-favorite-table>
+
+
     </div>
 
 
     <div [@detailState]="state">
-      <app-detail-page *ngIf="loadedFeature === 'results' && hasDetail == true"
+      <app-detail-page *ngIf="hasDetail == true"
                        (showList)="showList()"
                        [placeid]="placeid"
+                       [detailIcon]="detailIcon"
+                       [detailName]="detailName"
+                       [detailAddress]="detailAddress"
                        [detailLat]="detailLat"
                        [detailLng]="detailLng"
                        [currentLat]="currentLat"
                        [currentLng]="currentLng"
+                       [localStorageFormattedMap]="localStorageFormattedMap"
+                       (localStorageChangeEvent)="onUpdateLocalStorage()"
       ></app-detail-page>
     </div>
 
 
-    <app-favorite-table *ngIf="loadedFeature === 'favorites'"
-                        [detailPlace]="detailPlace"
-                        (hasDetail)="onHasDetail($event)"
-                        [localStorageFormattedList]="localStorageFormattedList"
-                        (localStorageChangeEvent)="onUpdateLocalStorage()"
-    ></app-favorite-table>
+
 
   </div>
 

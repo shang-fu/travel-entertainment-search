@@ -49,8 +49,7 @@ export class AppFormComponent implements OnInit {
   searchResults;
   isSubmit = false;
   hasDetail = false;
-  detailLat;
-  detailLng;
+
   hasNext = false;
   hasPrev = false;
 
@@ -76,6 +75,12 @@ export class AppFormComponent implements OnInit {
   loadedFeature = 'results';
   placeid: string;
   detailPlace;
+
+  detailIcon;
+  detailName;
+  detailAddress;
+  detailLat;
+  detailLng;
 
   localStorageFormattedList;
   localStorageFormattedMap;
@@ -155,7 +160,7 @@ export class AppFormComponent implements OnInit {
 
   onClear() {
     this.signupForm.reset({
-      searchData:{
+      searchData: {
         category: 'Default',
         locale: 'current'
       }
@@ -240,11 +245,21 @@ export class AppFormComponent implements OnInit {
   onHasDetail(detail: any) {
     this.hasDetail = true;
     this.state = 'detail';
-    this.placeid = detail.placeid;
+    this.placeid = detail.id;
+    this.detailIcon = detail.icon;
+    this.detailName = detail.name;
+    this.detailAddress = detail.address;
     this.detailLat = detail.lat;
     this.detailLng = detail.lng;
-    this.detailPlace = {'placeid': detail.placeid, 'lat': detail.lat, 'lng': detail.lng}
 
+    this.detailPlace = {
+      'placeid': detail.id,
+      'icon': detail.icon,
+      'name': detail.name,
+      'address': detail.address,
+      'lat': detail.lat,
+      'lng': detail.lng
+    };
   }
 
   showList() {
