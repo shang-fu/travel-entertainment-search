@@ -122,6 +122,7 @@
   <div *ngIf="isSubmit">
     <app-header (featureSelected)="onNavigate($event)"></app-header>
 
+
     <div [@tableState]="state">
       <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
                        [places]="searchResults"
@@ -130,8 +131,11 @@
                        [detailPlace]="detailPlace"
                        (pageSelected)="onPage($event)"
                        (hasDetail)="onHasDetail($event)"
+                       [localStorageFormattedMap]="localStorageFormattedMap"
+                       (localStorageChangeEvent)="onUpdateLocalStorage()"
       ></app-place-table>
     </div>
+
 
     <div [@detailState]="state">
       <app-detail-page *ngIf="loadedFeature === 'results' && hasDetail == true"
@@ -144,7 +148,14 @@
       ></app-detail-page>
     </div>
 
-    <app-favorite-table *ngIf="loadedFeature === 'favorites'"></app-favorite-table>
+
+    <app-favorite-table *ngIf="loadedFeature === 'favorites'"
+                        [detailPlace]="detailPlace"
+                        (hasDetail)="onHasDetail($event)"
+                        [localStorageFormattedList]="localStorageFormattedList"
+                        (localStorageChangeEvent)="onUpdateLocalStorage()"
+    ></app-favorite-table>
+
   </div>
 
 </div>

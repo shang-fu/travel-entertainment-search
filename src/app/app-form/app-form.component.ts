@@ -76,6 +76,9 @@ export class AppFormComponent implements OnInit {
   placeid: string;
   detailPlace;
 
+  localStorageFormattedList;
+  localStorageFormattedMap;
+
 
   constructor(private mapsAPILoader: MapsAPILoader, private locationService: LocationService) { }
 
@@ -100,6 +103,8 @@ export class AppFormComponent implements OnInit {
           console.log(error);
         }
       );
+
+    this.onUpdateLocalStorage();
   }
 
   onSubmit() {
@@ -244,6 +249,19 @@ export class AppFormComponent implements OnInit {
   showList() {
     this.hasDetail = false;
     this.state = 'table';
+  }
+
+  onUpdateLocalStorage() {
+    let dataMap = {};
+    let dataList = [];
+    for(let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      let val = localStorage.getItem(key);
+      dataList.push(JSON.parse(val));
+      dataMap[key] = val;
+    }
+    this.localStorageFormattedList = dataList;
+    this.localStorageFormattedMap = dataMap;
   }
 
 
