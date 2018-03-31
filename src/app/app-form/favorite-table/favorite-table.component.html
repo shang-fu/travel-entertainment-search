@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let place of localStorageFormattedList; let i = index"
+    <tr *ngFor="let place of localStorageFormattedList | slice:startIndex:startIndex+20; let i = index"
         [ngClass]="{detailBackground: detailPlace != undefined && place.id === detailPlace.placeid}">
       <th scope="row">{{ i+1 }}</th>
       <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
@@ -41,4 +41,16 @@
     </tr>
     </tbody>
   </table>
+</div>
+
+
+<div class="row justify-content-center">
+  <button *ngIf="hasPrevPage"
+          type="button" class="btn btn-outline-secondary"
+          (click)="onShowPrevPage()"
+  >Previous</button>
+  <button *ngIf="hasNextPage"
+          type="button" class="btn btn-outline-secondary"
+          (click)="onShowNextPage()"
+  >Next</button>
 </div>
