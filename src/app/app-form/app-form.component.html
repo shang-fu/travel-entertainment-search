@@ -119,10 +119,10 @@
 
 <div class="container">
 
-  <div *ngIf="isSubmit">
+
     <app-header (featureSelected)="onNavigate($event)"></app-header>
 
-
+  <div *ngIf="isSubmit">
     <div [@tableState]="state">
       <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
                        [places]="searchResults"
@@ -159,3 +159,5 @@
   </div>
 
 </div>
+
+

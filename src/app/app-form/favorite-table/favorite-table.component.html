@@ -1,3 +1,15 @@
+<div style="margin-bottom: 10px">
+  <div class="row justify-content-end">
+    <div class="col-xs-12">
+      <button type="button"
+              class="btn btn-outline-secondary"
+              [disabled]="detailPlace == undefined"
+              (click)="getDetail(detailPlace.placeid, detailPlace.lat, detailPlace.lng)"
+      >Details <i class="fas fa-angle-right"></i></button>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <table class="table table-hover">
     <thead>
@@ -11,8 +23,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let place of localStorageFormattedList; let i = index">
-        <!--[ngClass]="{detailBackground: detailPlace != undefined && place.place_id === detailPlace.placeid}">-->
+    <tr *ngFor="let place of localStorageFormattedList; let i = index"
+        [ngClass]="{detailBackground: detailPlace != undefined && place.id === detailPlace.placeid}">
       <th scope="row">{{ i+1 }}</th>
       <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
       <td>{{ place.name }}</td>

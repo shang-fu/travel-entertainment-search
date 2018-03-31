@@ -3,6 +3,7 @@ import {NgForm} from '@angular/forms';
 import {LocationService} from './getlocation.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MapsAPILoader } from '@agm/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-app-form',
@@ -260,6 +261,10 @@ export class AppFormComponent implements OnInit {
       dataList.push(JSON.parse(val));
       dataMap[key] = val;
     }
+
+    dataList.sort((a, b) => {
+      return a['time'] - b['time'];
+    });
     this.localStorageFormattedList = dataList;
     this.localStorageFormattedMap = dataMap;
   }

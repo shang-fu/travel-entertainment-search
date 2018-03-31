@@ -25,17 +25,22 @@ export class DetailReviewComponent implements OnInit {
 
     const yelpAddress = this.place.formatted_address.split(', ');
     console.log(yelpAddress);
-    if (yelpAddress[3] !== 'USA') {
+    if (yelpAddress[yelpAddress.length - 1] !== 'USA') {
       this.inUSA = false;
     }
     if (this.inUSA === true) {
+      let address1 = '';
+      for (let i = 0; i < yelpAddress.length - 3; i++) {
+        address1 += yelpAddress[i] + ', ';
+      }
+      address1 = address1.slice(0, -2);
       const yelpRequest = {
         name: this.place.name,
-        address1: yelpAddress[0],
-        address2: yelpAddress[1],
-        address3: yelpAddress[2],
-        city: yelpAddress[1],
-        state: yelpAddress[2].split(' ')[0],
+        address1: address1,
+        address2: yelpAddress[yelpAddress.length - 3],
+        address3: yelpAddress[yelpAddress.length - 2],
+        city: yelpAddress[yelpAddress.length - 3],
+        state: yelpAddress[yelpAddress.length - 2].split(' ')[0],
         country: 'US'
       };
 

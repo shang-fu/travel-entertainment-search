@@ -24,11 +24,19 @@ router.get("/", function(req, res) {
 		state: req.query.state,
 		country: req.query.country
 
-		// name: 'Pannikin Coffee & Tea',
-		// address1: '510 N Coast Hwy 101',
-		// address2: 'Encinitas',
-		// address3: 'CA 92024';
-		// city: 'Encinitas',
+		// name: 'Outback Steakhouse',
+		// address1: '146 S Brand Blvd',
+		// address2: 'Glendale',
+		// address3: 'CA 91204',
+		// city: 'Glendale',
+		// state: 'CA',
+		// country: 'US'
+
+		// name: 'The Palm Beverly Hills',
+		// address1: '5335, 267 N Canon Dr',
+		// address2: 'Beverly Hills',
+		// address3: 'CA 90210',
+		// city: 'Beverly Hills',
 		// state: 'CA',
 		// country: 'US'
 
@@ -39,9 +47,10 @@ router.get("/", function(req, res) {
 		console.log(data);
 		console.log(data.businesses[0].location.address1);
 		console.log(req.query.address1);
+		// res.send(data);
 
 
-		if (data.businesses.length != 0 && data.businesses[0].location.address1 == req.query.address1) {
+		if (data.businesses.length != 0 && (data.businesses[0].location.address1 === req.query.address1 || data.businesses[0].name === req.query.name)) {
 			console.log('Finding the correct location');
 			console.log(data.businesses[0].id);
 
