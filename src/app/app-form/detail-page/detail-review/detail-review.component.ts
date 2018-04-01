@@ -1,11 +1,34 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {YelpService} from './yelp.service';
 import * as moment from 'moment';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-detail-review',
   templateUrl: './detail-review.component.html',
-  styleUrls: ['./detail-review.component.css']
+  styleUrls: ['./detail-review.component.css'],
+  animations: [
+    trigger('googleState', [
+      state('google', style({
+        opacity: 1,
+      })),
+      state('yelp', style({
+        opacity: 0,
+      })),
+      transition('google => yelp', animate(200)),
+      transition('yelp => google', animate(1000))
+    ]),
+    trigger('yelpState', [
+      state('google', style({
+        opacity: 0,
+      })),
+      state('yelp', style({
+        opacity: 1,
+      })),
+      transition('google => yelp', animate(1000)),
+      transition('yelp => google', animate(200))
+    ]),
+  ]
 })
 export class DetailReviewComponent implements OnInit {
   company = 'Google Reviews';
@@ -15,6 +38,7 @@ export class DetailReviewComponent implements OnInit {
   yelpReviews: Array<any>;
   yelpReviewsOriginal: Array<any>;
   inUSA = true;
+  state = 'google';
 
   constructor(private yelp: YelpService) { }
 
@@ -64,6 +88,11 @@ export class DetailReviewComponent implements OnInit {
 
   onChangeReview(company: string) {
     this.company = company;
+    if (this.company === 'Google Reviews') {
+      this.state = 'google';
+    } else if (this.company === 'Yelp Reviews') {
+      this.state = 'yelp';
+    }
     this.sortReviews();
   }
 
