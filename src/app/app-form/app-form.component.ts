@@ -193,8 +193,10 @@ export class AppFormComponent implements OnInit {
   }
 
   onNavigate(feature: string) {
+    this.hasDetail = false;
     this.loadedFeature = feature;
     this.feature = feature;
+    this.state = 'table';
   }
 
   onPage(page: string) {

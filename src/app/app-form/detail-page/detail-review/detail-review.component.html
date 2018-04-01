@@ -27,8 +27,8 @@
 </div>
 
 <div class="row">
-  <div [@googleState]="state">
-    <div *ngIf="company === 'Google Reviews'" style="width: 100%;">
+  <div [@googleState]="state" style="width: 100%;">
+    <div *ngIf="company === 'Google Reviews'">
     <div *ngIf="googleReviews === null || googleReviews === undefined">
       <div class="alert alert-warning" role="alert" style="margin-top: 10px;">
         No records.
@@ -63,8 +63,8 @@
   </div>
   </div>
 
-  <div [@yelpState]="state">
-    <div *ngIf="company === 'Yelp Reviews'" style="width: 100%;">
+  <div [@yelpState]="state" style="width: 100%;">
+    <div *ngIf="company === 'Yelp Reviews'" >
 
     <div *ngIf="yelpReviews === null || yelpReviews === undefined">
       <div class="alert alert-warning" role="alert" style="margin-top: 10px;">

@@ -3,25 +3,25 @@
     <ul class="nav nav-tabs  justify-content-end">
       <li class="nav-item">
         <a class="nav-link"
-           [ngClass]="{active: headerstate === 'info'}"
+           [ngClass]="{active: headerstate === 'info', notActive: headerstate !== 'info'}"
            (click)="onSelect('info')"
         >Info</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           [ngClass]="{active: headerstate === 'photo'}"
+           [ngClass]="{active: headerstate === 'photo', notActive: headerstate !== 'photo'}"
            (click)="onSelect('photo')"
         >Photos</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           [ngClass]="{active: headerstate === 'map'}"
+           [ngClass]="{active: headerstate === 'map', notActive: headerstate !== 'map'}"
            (click)="onSelect('map')"
         >Map</a>
       </li>
       <li class="nav-item">
         <a class="nav-link"
-           [ngClass]="{active: headerstate === 'review'}"
+           [ngClass]="{active: headerstate === 'review', notActive: headerstate !== 'review'}"
            (click)="onSelect('review')"
         >Reviews</a>
       </li>

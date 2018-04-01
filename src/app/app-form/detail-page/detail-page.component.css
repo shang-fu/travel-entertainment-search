@@ -3,3 +3,26 @@
   cursor: pointer;
 }
 
+@media (min-width: 300px) {
+  #detailheader {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 500px) {
+  #detailheader {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  #detailheader {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  #detailheader {
+    font-size: 3rem;
+  }
+}

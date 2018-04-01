@@ -138,7 +138,8 @@ export class DetailInfoComponent implements OnInit {
             const targetHoursData = this.place.opening_hours;
             // const periods = targetHoursData.periods;
             const weekDay = targetHoursData.weekday_text;
-            const localDayToNum = Number(moment().utcOffset(this.place.utc_offset).format('d')) - 1;
+            let localDayToNum = Number(moment().utcOffset(this.place.utc_offset).format('d')) - 1;
+            localDayToNum = localDayToNum === -1 ? 6 : localDayToNum;
             // const matchLocalDayToNum = localDayToNum === -1 ? 6 : localDayToNum;
             console.log(localDayToNum);
             // this.localDayToNum = localDayToNum;
