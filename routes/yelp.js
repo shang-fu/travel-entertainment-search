@@ -10,10 +10,6 @@ const client = yelp.client(apikey);
 
 
 router.get("/", function(req, res) {
-	// console.log("Queries are ...")
-	// console.log(req.query);
-
-
 
 	client.businessMatch('best', {
 		name: req.query.name,
@@ -23,31 +19,12 @@ router.get("/", function(req, res) {
 		city: req.query.city,
 		state: req.query.state,
 		country: req.query.country
-
-		// name: 'Outback Steakhouse',
-		// address1: '146 S Brand Blvd',
-		// address2: 'Glendale',
-		// address3: 'CA 91204',
-		// city: 'Glendale',
-		// state: 'CA',
-		// country: 'US'
-
-		// name: 'The Palm Beverly Hills',
-		// address1: '5335, 267 N Canon Dr',
-		// address2: 'Beverly Hills',
-		// address3: 'CA 90210',
-		// city: 'Beverly Hills',
-		// state: 'CA',
-		// country: 'US'
-
-
 		
 	}).then(response => {
 		var data = JSON.parse(response.body);
 		console.log(data);
 		console.log(data.businesses[0].location.address1);
 		console.log(req.query.address1);
-		// res.send(data);
 
 
 		if (data.businesses.length != 0 && (data.businesses[0].location.address1 === req.query.address1 || data.businesses[0].name === req.query.name)) {

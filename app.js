@@ -12,16 +12,16 @@ app.use(methodOverride("_method"));
 app.use('/search', search);
 app.use('/yelp', yelp);
 
-// var apikey = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
-
 app.get("/", function(req, res) {
 	res.render('index');
 });
 
-
-app.set('port', 4200);
-app.listen(app.get('port'), function(){
-	console.log("SERVER IS RUNNING, LISTENING 4200...");
+// Start the server
+// const PORT = 4200;
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+  console.log('Press Ctrl+C to quit.');
 });
 
 

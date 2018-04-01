@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "deploy": "gcloud app deploy",
+    "start": "node app.js",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -24,6 +25,7 @@
     "@angular/router": "^5.2.0",
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-webfonts": "^1.0.5",
+    "@google-cloud/storage": "^1.6.0",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
