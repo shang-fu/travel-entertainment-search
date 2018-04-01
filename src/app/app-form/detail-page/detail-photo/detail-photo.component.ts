@@ -15,9 +15,7 @@ export class DetailPhotoComponent implements OnInit {
 
   ngOnInit() {
     if (this.place.photos) {
-      // let image = this.place.photos[0].getUrl({maxWidth: this.place.photos[0].width});
-      // console.log(image);
-      // $('#detailphoto').append(`<div class="card"><img class="img-thumbnail" src="${image}"></div>`);
+
 
       this.place.photos.forEach((photo) => {
         let image = photo.getUrl({maxWidth: photo.width});
@@ -25,6 +23,8 @@ export class DetailPhotoComponent implements OnInit {
 <a href="${image}" target="_blank"><img class="img-thumbnail" src="${image}"></div></a>`);
       });
 
+    } else {
+      $('#detailphotoNoRecord').append(`<div class="alert alert-warning" role="alert">No records.</div>`);
     }
   }
 

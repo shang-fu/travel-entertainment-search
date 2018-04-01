@@ -132,41 +132,57 @@
 
 
     <div *ngIf="searchResults !== undefined && searchResults !== null">
-      <div [@tableState]="state">
-        <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
-                         [places]="searchResults"
-                         [hasNext]="hasNext"
-                         [hasPrev]="hasPrev"
-                         [detailPlace]="detailPlace"
-                         (pageSelected)="onPage($event)"
-                         (hasDetail)="onHasDetail($event)"
-                         [localStorageFormattedMap]="localStorageFormattedMap"
-                         (localStorageChangeEvent)="onUpdateLocalStorage()"
-        ></app-place-table>
+      <div *ngIf="searchStatus === 'OK'">
+        <div [@tableState]="state">
+          <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
+                           [places]="searchResults"
+                           [hasNext]="hasNext"
+                           [hasPrev]="hasPrev"
+                           [detailPlace]="detailPlace"
+                           (pageSelected)="onPage($event)"
+                           (hasDetail)="onHasDetail($event)"
+                           [localStorageFormattedMap]="localStorageFormattedMap"
+                           (localStorageChangeEvent)="onUpdateLocalStorage()"
+          ></app-place-table>
 
-        <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
-                            [detailPlace]="detailPlace"
-                            (hasDetail)="onHasDetail($event)"
-                            [localStorageFormattedList]="localStorageFormattedList"
-                            (localStorageChangeEvent)="onUpdateLocalStorage()"
-        ></app-favorite-table>
+          <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
+                              [detailPlace]="detailPlace"
+                              (hasDetail)="onHasDetail($event)"
+                              [localStorageFormattedList]="localStorageFormattedList"
+                              (localStorageChangeEvent)="onUpdateLocalStorage()"
+          ></app-favorite-table>
+        </div>
+
+        <div [@detailState]="state">
+          <app-detail-page *ngIf="hasDetail == true"
+                           (showList)="showList()"
+                           [placeid]="placeid"
+                           [detailIcon]="detailIcon"
+                           [detailName]="detailName"
+                           [detailAddress]="detailAddress"
+                           [detailLat]="detailLat"
+                           [detailLng]="detailLng"
+                           [currentLat]="currentLat"
+                           [currentLng]="currentLng"
+                           [localStorageFormattedMap]="localStorageFormattedMap"
+                           (localStorageChangeEvent)="onUpdateLocalStorage()"
+          ></app-detail-page>
+        </div>
       </div>
 
-      <div [@detailState]="state">
-        <app-detail-page *ngIf="hasDetail == true"
-                         (showList)="showList()"
-                         [placeid]="placeid"
-                         [detailIcon]="detailIcon"
-                         [detailName]="detailName"
-                         [detailAddress]="detailAddress"
-                         [detailLat]="detailLat"
-                         [detailLng]="detailLng"
-                         [currentLat]="currentLat"
-                         [currentLng]="currentLng"
-                         [localStorageFormattedMap]="localStorageFormattedMap"
-                         (localStorageChangeEvent)="onUpdateLocalStorage()"
-        ></app-detail-page>
+      <div *ngIf="searchStatus === 'ZERO_RESULTS'">
+        <div class="alert alert-warning" role="alert">
+          No records.
+        </div>
       </div>
+
+      <div *ngIf="searchStatus === 'INVALID_REQUEST'">
+        <div class="alert alert-danger" role="alert">
+          Failed to get search results.
+        </div>
+      </div>
+
+
     </div>
 
 

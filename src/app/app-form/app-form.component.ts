@@ -47,6 +47,7 @@ export class AppFormComponent implements OnInit {
   currentPage;
   // nexPageToken;
   searchResults;
+  searchStatus;
   isSubmit = false;
   hasDetail = false;
 
@@ -117,6 +118,7 @@ export class AppFormComponent implements OnInit {
   onClickSubmit() {
     this.isSubmit = true;
     this.searchResults = null;
+    this.searchStatus = null;
     this.onSubmit();
   }
 
@@ -130,7 +132,7 @@ export class AppFormComponent implements OnInit {
       this.data.distance = this.signupForm.value.searchData.distance;
     }
     this.data.locale = this.signupForm.value.searchData.locale;
-    if (this.signupForm.value.searchData.locale == 'other') {
+    if (this.signupForm.value.searchData.locale === 'other') {
       this.data.localeOtherDetail = this.signupForm.value.searchData.localeOtherDetail;
     } else {
       this.data.localeOtherDetail = '';
@@ -153,6 +155,7 @@ export class AppFormComponent implements OnInit {
           }
 
           this.searchResults = response['results'];
+          this.searchStatus  = response['status'];
           // console.log(this.nexPageToken);
           // console.log(this.searchResults);
 
@@ -176,6 +179,7 @@ export class AppFormComponent implements OnInit {
     this.feature = 'results';
     this.isSubmit = false;
     this.searchResults = null;
+    this.searchStatus = null;
   }
 
   onNavigate(feature: string) {
@@ -197,6 +201,7 @@ export class AppFormComponent implements OnInit {
               this.hasNext = false;
             }
             this.searchResults = response['results'];
+            this.searchStatus  = response['status'];
             this.hasPrev = false;
             this.currentPage = 'page1';
           },
@@ -220,6 +225,7 @@ export class AppFormComponent implements OnInit {
               this.hasNext = false;
             }
             this.searchResults = response['results'];
+            this.searchStatus  = response['status'];
             this.hasPrev = true;
             this.currentPage = 'page2';
           },
@@ -241,6 +247,7 @@ export class AppFormComponent implements OnInit {
               this.hasNext = false;
             }
             this.searchResults = response['results'];
+            this.searchStatus  = response['status'];
             this.hasPrev = true;
             this.currentPage = 'page3';
           },
