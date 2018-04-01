@@ -1,7 +1,7 @@
 <div class="container">
   <div class="jumbotron myCustomJumbotron">
     <div class="myCustomContainer">
-      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <form (ngSubmit)="onClickSubmit(f)" #f="ngForm">
         <div ngModelGroup="searchData">
           <h2 class="myCustomHeading">Travel and Entertainment Search</h2>
           <div class="form-group row">
@@ -125,43 +125,48 @@
     ></app-header>
 
   <div *ngIf="isSubmit">
-    <div [@tableState]="state">
-      <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
-                       [places]="searchResults"
-                       [hasNext]="hasNext"
-                       [hasPrev]="hasPrev"
-                       [detailPlace]="detailPlace"
-                       (pageSelected)="onPage($event)"
-                       (hasDetail)="onHasDetail($event)"
-                       [localStorageFormattedMap]="localStorageFormattedMap"
-                       (localStorageChangeEvent)="onUpdateLocalStorage()"
-      ></app-place-table>
 
-      <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
-                          [detailPlace]="detailPlace"
-                          (hasDetail)="onHasDetail($event)"
-                          [localStorageFormattedList]="localStorageFormattedList"
-                          (localStorageChangeEvent)="onUpdateLocalStorage()"
-      ></app-favorite-table>
-
-
+    <div class="progress" *ngIf="searchResults === undefined || searchResults === null">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
     </div>
 
 
-    <div [@detailState]="state">
-      <app-detail-page *ngIf="hasDetail == true"
-                       (showList)="showList()"
-                       [placeid]="placeid"
-                       [detailIcon]="detailIcon"
-                       [detailName]="detailName"
-                       [detailAddress]="detailAddress"
-                       [detailLat]="detailLat"
-                       [detailLng]="detailLng"
-                       [currentLat]="currentLat"
-                       [currentLng]="currentLng"
-                       [localStorageFormattedMap]="localStorageFormattedMap"
-                       (localStorageChangeEvent)="onUpdateLocalStorage()"
-      ></app-detail-page>
+    <div *ngIf="searchResults !== undefined && searchResults !== null">
+      <div [@tableState]="state">
+        <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
+                         [places]="searchResults"
+                         [hasNext]="hasNext"
+                         [hasPrev]="hasPrev"
+                         [detailPlace]="detailPlace"
+                         (pageSelected)="onPage($event)"
+                         (hasDetail)="onHasDetail($event)"
+                         [localStorageFormattedMap]="localStorageFormattedMap"
+                         (localStorageChangeEvent)="onUpdateLocalStorage()"
+        ></app-place-table>
+
+        <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
+                            [detailPlace]="detailPlace"
+                            (hasDetail)="onHasDetail($event)"
+                            [localStorageFormattedList]="localStorageFormattedList"
+                            (localStorageChangeEvent)="onUpdateLocalStorage()"
+        ></app-favorite-table>
+      </div>
+
+      <div [@detailState]="state">
+        <app-detail-page *ngIf="hasDetail == true"
+                         (showList)="showList()"
+                         [placeid]="placeid"
+                         [detailIcon]="detailIcon"
+                         [detailName]="detailName"
+                         [detailAddress]="detailAddress"
+                         [detailLat]="detailLat"
+                         [detailLng]="detailLng"
+                         [currentLat]="currentLat"
+                         [currentLng]="currentLng"
+                         [localStorageFormattedMap]="localStorageFormattedMap"
+                         (localStorageChangeEvent)="onUpdateLocalStorage()"
+        ></app-detail-page>
+      </div>
     </div>
 
 

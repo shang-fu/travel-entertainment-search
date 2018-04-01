@@ -29,21 +29,21 @@
         <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
         <td>{{ place.name }}</td>
         <td>{{ place.vicinity }}</td>
-
-        <div *ngIf="localStorageFormattedMap[place.place_id] === undefined">
-          <td><button type="button"
-                      class="btn btn-outline-secondary"
-                      (click)="onFavSave(place.place_id, place.icon, place.name, place.vicinity, place.geometry.location.lat, place.geometry.location.lng)"
-                      ><i class="far fa-star"></i></button></td>
-        </div>
-        <div *ngIf="localStorageFormattedMap[place.place_id] !== undefined">
-          <td><button type="button"
-                      class="btn btn-outline-secondary"
-                      style="color: rgb(249, 213, 86)"
-                      (click)="onFavRemove(place.place_id)"
-          ><i class="fas fa-star"></i></button></td>
-        </div>
-
+        <td>
+          <div *ngIf="localStorageFormattedMap[place.place_id] === undefined">
+            <button type="button"
+                        class="btn btn-outline-secondary"
+                        (click)="onFavSave(place.place_id, place.icon, place.name, place.vicinity, place.geometry.location.lat, place.geometry.location.lng)"
+                        ><i class="far fa-star"></i></button>
+          </div>
+          <div *ngIf="localStorageFormattedMap[place.place_id] !== undefined">
+            <button type="button"
+                        class="btn btn-outline-secondary"
+                        style="color: rgb(249, 213, 86)"
+                        (click)="onFavRemove(place.place_id)"
+            ><i class="fas fa-star"></i></button>
+          </div>
+        </td>
         <td><button type="button"
                     class="btn btn-outline-secondary"
                     (click)="getDetail(place.place_id, place.icon, place.name, place.vicinity, place.geometry.location.lat, place.geometry.location.lng)"

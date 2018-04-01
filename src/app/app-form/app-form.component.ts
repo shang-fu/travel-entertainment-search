@@ -114,6 +114,12 @@ export class AppFormComponent implements OnInit {
     this.onUpdateLocalStorage();
   }
 
+  onClickSubmit() {
+    this.isSubmit = true;
+    this.searchResults = null;
+    this.onSubmit();
+  }
+
   onSubmit() {
     // console.log(this.signupForm);
     this.data.keyword = this.signupForm.value.searchData.keyword;
@@ -137,7 +143,7 @@ export class AppFormComponent implements OnInit {
         (response) => {
           console.log('getting search places - page 1');
           console.log(response);
-          this.isSubmit = true;
+
           this.currentPage = 'page1';
           if (response['next_page_token']) {
             this.hasNext = true;
@@ -169,6 +175,7 @@ export class AppFormComponent implements OnInit {
     });
     this.feature = 'results';
     this.isSubmit = false;
+    this.searchResults = null;
   }
 
   onNavigate(feature: string) {
