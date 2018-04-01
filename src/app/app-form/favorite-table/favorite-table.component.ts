@@ -12,7 +12,6 @@ export class FavoriteTableComponent implements OnInit {
   @Output() localStorageChangeEvent = new EventEmitter<any>();
   @Output() hasDetail = new EventEmitter<any>();
 
-  currentPage;
   hasNextPage;
   hasPrevPage;
   startIndex;

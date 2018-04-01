@@ -1,56 +1,64 @@
-<div style="margin-bottom: 10px">
-  <div class="row justify-content-end">
-    <div class="col-xs-12">
-      <button type="button"
-              class="btn btn-outline-secondary"
-              [disabled]="detailPlace == undefined"
-              (click)="getDetail(detailPlace.placeid, detailPlace.icon, detailPlace.name, detailPlace.address, detailPlace.lat, detailPlace.lng)"
-      >Details <i class="fas fa-angle-right"></i></button>
+<div *ngIf="localStorageFormattedList !== undefined && localStorageFormattedList !== null && localStorageFormattedList.length !== 0">
+  <div style="margin-bottom: 10px">
+    <div class="row justify-content-end">
+      <div class="col-xs-12">
+        <button type="button"
+                class="btn btn-outline-secondary"
+                [disabled]="detailPlace == undefined"
+                (click)="getDetail(detailPlace.placeid, detailPlace.icon, detailPlace.name, detailPlace.address, detailPlace.lat, detailPlace.lng)"
+        >Details <i class="fas fa-angle-right"></i></button>
+      </div>
     </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Favorite</th>
+        <th scope="col">Details</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let place of localStorageFormattedList | slice:startIndex:startIndex+20; let i = index"
+          [ngClass]="{detailBackground: detailPlace != undefined && place.id === detailPlace.placeid}">
+        <th scope="row">{{ i+1 }}</th>
+        <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
+        <td>{{ place.name }}</td>
+        <td>{{ place.address }}</td>
+        <td><button type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="onFavRemove(place.id)"
+        ><i class="fas fa-trash-alt"></i></button></td>
+        <td><button type="button"
+                    class="btn btn-outline-secondary"
+                    (click)="getDetail(place.id, place.icon, place.name, place.address, place.lat, place.lng)"
+        ><i class="fas fa-angle-right"></i></button></td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="row justify-content-center">
+    <button *ngIf="hasPrevPage"
+            type="button" class="btn btn-outline-secondary"
+            (click)="onShowPrevPage()"
+    >Previous</button>
+    <button *ngIf="hasNextPage"
+            type="button" class="btn btn-outline-secondary"
+            (click)="onShowNextPage()"
+    >Next</button>
   </div>
 </div>
 
-<div class="row">
-  <table class="table table-hover">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Category</th>
-      <th scope="col">Name</th>
-      <th scope="col">Address</th>
-      <th scope="col">Favorite</th>
-      <th scope="col">Details</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let place of localStorageFormattedList | slice:startIndex:startIndex+20; let i = index"
-        [ngClass]="{detailBackground: detailPlace != undefined && place.id === detailPlace.placeid}">
-      <th scope="row">{{ i+1 }}</th>
-      <td><div class="icon"><img class="iconimage" src="{{ place.icon }}"></div></td>
-      <td>{{ place.name }}</td>
-      <td>{{ place.address }}</td>
-      <td><button type="button"
-                  class="btn btn-outline-secondary"
-                  (click)="onFavRemove(place.id)"
-      ><i class="fas fa-trash-alt"></i></button></td>
-      <td><button type="button"
-                  class="btn btn-outline-secondary"
-                  (click)="getDetail(place.id, place.icon, place.name, place.address, place.lat, place.lng)"
-      ><i class="fas fa-angle-right"></i></button></td>
-
-    </tr>
-    </tbody>
-  </table>
-</div>
-
-
-<div class="row justify-content-center">
-  <button *ngIf="hasPrevPage"
-          type="button" class="btn btn-outline-secondary"
-          (click)="onShowPrevPage()"
-  >Previous</button>
-  <button *ngIf="hasNextPage"
-          type="button" class="btn btn-outline-secondary"
-          (click)="onShowNextPage()"
-  >Next</button>
+<div *ngIf="localStorageFormattedList === undefined || localStorageFormattedList === null || localStorageFormattedList.length === 0">
+  <div class="alert alert-warning" role="alert">
+    No Records.
+  </div>
 </div>

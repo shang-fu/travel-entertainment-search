@@ -116,10 +116,16 @@ export class AppFormComponent implements OnInit {
   }
 
   onClickSubmit() {
+    this.state = 'table';
+    this.detailPlace = null;
     this.isSubmit = true;
     this.searchResults = null;
     this.searchStatus = null;
+    this.feature = 'results';
+    this.loadedFeature = 'results';
+    this.hasDetail = false;
     this.onSubmit();
+
   }
 
   onSubmit() {
@@ -176,6 +182,10 @@ export class AppFormComponent implements OnInit {
         distance: ''
       }
     });
+    this.state = 'table';
+    this.loadedFeature = 'results';
+    this.hasDetail = false;
+    this.detailPlace = null;
     this.feature = 'results';
     this.isSubmit = false;
     this.searchResults = null;

@@ -75,44 +75,54 @@ export class DetailReviewComponent implements OnInit {
 
   sortReviews() {
     if (this.order === 'Default Order') {
-      this.googleReviews = this.place.reviews;
-      if (this.inUSA === true) {
+      if (this.googleReviews !== null && this.googleReviews !== undefined) {
+        this.googleReviews = this.place.reviews;
+      }
+      if (this.inUSA === true && this.yelpReviews !== null && this.yelpReviews !== undefined) {
         this.yelpReviews = JSON.parse(JSON.stringify(this.yelpReviewsOriginal));
         console.log(this.yelpReviews);
         console.log(this.yelpReviewsOriginal);
       }
     } else if (this.order === 'Most Recent') {
-      this.googleReviews.sort((a, b) => {
-        return b.time - a.time;
-      });
-      if (this.inUSA === true) {
+      if (this.googleReviews !== null && this.googleReviews !== undefined) {
+        this.googleReviews.sort((a, b) => {
+          return b.time - a.time;
+        });
+      }
+      if (this.inUSA === true && this.yelpReviews !== null && this.yelpReviews !== undefined) {
         this.yelpReviews.sort((a, b) => {
           return Number(moment(b['time_created']).format('x')) - Number(moment(a['time_created']).format('x'));
         });
       }
     } else if (this.order === 'Least Recent') {
-      this.googleReviews.sort((a, b) => {
-        return a.time - b.time;
-      });
-      if (this.inUSA === true) {
+      if (this.googleReviews !== null && this.googleReviews !== undefined) {
+        this.googleReviews.sort((a, b) => {
+          return a.time - b.time;
+        });
+      }
+      if (this.inUSA === true && this.yelpReviews !== null && this.yelpReviews !== undefined) {
         this.yelpReviews.sort((a, b) => {
           return Number(moment(a['time_created']).format('x')) - Number(moment(b['time_created']).format('x'));
         });
       }
     } else if (this.order === 'Highest Rating') {
-      this.googleReviews.sort((a, b) => {
-        return b.rating - a.rating;
-      });
-      if (this.inUSA === true) {
+      if (this.googleReviews !== null && this.googleReviews !== undefined) {
+        this.googleReviews.sort((a, b) => {
+          return b.rating - a.rating;
+        });
+      }
+      if (this.inUSA === true && this.yelpReviews !== null && this.yelpReviews !== undefined) {
         this.yelpReviews.sort((a, b) => {
           return b.rating - a.rating;
         });
       }
     } else if (this.order === 'Lowest Rating') {
-      this.googleReviews.sort((a, b) => {
-        return a.rating - b.rating;
-      });
-      if (this.inUSA === true) {
+      if (this.googleReviews !== null && this.googleReviews !== undefined) {
+        this.googleReviews.sort((a, b) => {
+          return a.rating - b.rating;
+        });
+      }
+      if (this.inUSA === true && this.yelpReviews !== null && this.yelpReviews !== undefined) {
         this.yelpReviews.sort((a, b) => {
           return a.rating - b.rating;
         });
