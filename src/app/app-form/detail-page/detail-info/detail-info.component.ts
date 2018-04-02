@@ -69,15 +69,15 @@ export class DetailInfoComponent implements OnInit {
           }
 
 
-          if (this.place.price_level != undefined) {
-            if (this.place.price_level == 1) {
+          if (this.place.price_level !== undefined) {
+            if (this.place.price_level === 1) {
               $('#detailprice').text('$');
-            } else if (this.place.price_level == 2) {
-              $('#detailprice').text('$');
-            } else if (this.place.price_level == 3) {
-              $('#detailprice').text('$');
-            } else if (this.place.price_level == 4) {
-              $('#detailprice').text('$');
+            } else if (this.place.price_level === 2) {
+              $('#detailprice').text('$$');
+            } else if (this.place.price_level === 3) {
+              $('#detailprice').text('$$$');
+            } else if (this.place.price_level === 4) {
+              $('#detailprice').text('$$$$');
             }
           } else {
             $('#detailprice-row').remove();

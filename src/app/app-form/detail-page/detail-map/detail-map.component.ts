@@ -96,7 +96,7 @@ export class DetailMapComponent implements OnInit {
 
 
     this.directionsService.route({
-      origin: (inputValue === 'Your location' || inputValue === 'My location') ? this.origin : inputValue,
+      origin: (inputValue.toLowerCase() === 'your location' || inputValue.toLowerCase() === 'my location') ? this.origin : inputValue,
       destination: this.destination,
       provideRouteAlternatives: true,
       travelMode: travelMode

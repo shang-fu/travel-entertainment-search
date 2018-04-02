@@ -21,8 +21,21 @@
   background-color: rgb(245, 218, 152);
 }
 
+
 .scrollable {
-  display: block;
   overflow-x: auto;
-  white-space: nowrap;
+}
+
+@media (min-width: 300px) {
+  .scrollable {
+    display: block;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1100px) {
+  .scrollable {
+    display: table;
+    white-space: normal;
+  }
 }
