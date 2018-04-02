@@ -23,6 +23,8 @@ export class DetailPageComponent implements OnInit {
   @Input() currentLng: number;
   @Input() localStorageFormattedMap;
   @Output() localStorageChangeEvent = new EventEmitter<any>();
+  @Input() locale;
+  @Input() localeOtherDetail;
 
   place: any;
 

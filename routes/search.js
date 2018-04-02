@@ -33,7 +33,10 @@ router.get("/", function(req, res) {
 
 		function search() {
 			var url = 
-			`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=${keyword}`;
+			`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}`;
+
+			url += '&keyword=' + keyword.split(' ').join('+');
+
 			if (type != 'default') {
 				url += '&type=' + type;
 			}

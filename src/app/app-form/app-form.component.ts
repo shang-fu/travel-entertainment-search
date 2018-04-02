@@ -139,13 +139,15 @@ export class AppFormComponent implements OnInit {
     }
     this.data.locale = this.signupForm.value.searchData.locale;
     if (this.signupForm.value.searchData.locale === 'other') {
-      this.data.localeOtherDetail = this.signupForm.value.searchData.localeOtherDetail;
+      this.data.localeOtherDetail = this.searchElementRef.nativeElement.value;
     } else {
       this.data.localeOtherDetail = '';
     }
 
     this.data.lat = this.currentLat;
     this.data.lng = this.currentLng;
+    console.log(this.searchElementRef.nativeElement.value);
+    console.log(this.data);
     this.locationService.searchPlaces(this.data)
       .subscribe(
         (response) => {

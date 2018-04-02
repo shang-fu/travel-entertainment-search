@@ -16,7 +16,10 @@ export class DetailMapComponent implements OnInit {
   @ViewChild('detailMap') public detailMap: ElementRef;
   @ViewChild('detailmapPanel') public detailmapPanel: ElementRef;
   @ViewChild('inputHow') public inputHow: ElementRef;
+  @Input() locale;
+  @Input() localeOtherDetail;
 
+  from;
   origin: any;
   destination: any;
   map: any;
@@ -37,6 +40,12 @@ export class DetailMapComponent implements OnInit {
   ngOnInit() {
     this.detailname = this.place.name;
     this.detailaddress = this.place.formatted_address;
+
+    if (this.locale === 'current') {
+      this.from = 'Your location';
+    } else if (this.locale === 'other') {
+      this.from = this.localeOtherDetail;
+    }
 
     this.zoom = 4;
     this.latitude = 39.8282;
