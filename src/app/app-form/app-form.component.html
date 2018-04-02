@@ -1,9 +1,10 @@
+
 <div class="container">
   <div class="jumbotron myCustomJumbotron">
     <div class="myCustomContainer">
       <form (ngSubmit)="onClickSubmit(f)" #f="ngForm">
         <div ngModelGroup="searchData">
-          <h2 class="myCustomHeading">Travel and Entertainment Search</h2>
+          <div id="myCustomHeading">Travel and Entertainment Search</div>
           <div class="form-group row">
             <div class="col-sm-1"></div>
             <label for="keyword" class="col-sm-2 col-form-label">Keyword<span class="redSPot">*</span></label>
@@ -114,15 +115,25 @@
       </form>
     </div>
   </div>
+
 </div>
 
 
 <div class="container">
 
+  <app-header (featureSelected)="onNavigate($event)"
+              [feature]="feature"
+  ></app-header>
 
-    <app-header (featureSelected)="onNavigate($event)"
-                [feature]="feature"
-    ></app-header>
+</div>
+
+
+
+
+
+
+
+<div class="container">
 
   <div *ngIf="isSubmit">
 
@@ -133,7 +144,9 @@
 
     <div *ngIf="searchResults !== undefined && searchResults !== null">
       <div *ngIf="searchStatus === 'OK'">
-        <div [@tableState]="state">
+        <div [@tableState]="state" class="scrollable">
+
+
           <app-place-table *ngIf="loadedFeature === 'results' && hasDetail == false"
                            [places]="searchResults"
                            [hasNext]="hasNext"
@@ -145,13 +158,15 @@
                            (localStorageChangeEvent)="onUpdateLocalStorage()"
           ></app-place-table>
 
+
           <app-favorite-table *ngIf="loadedFeature === 'favorites' && hasDetail == false"
                               [detailPlace]="detailPlace"
                               (hasDetail)="onHasDetail($event)"
                               [localStorageFormattedList]="localStorageFormattedList"
                               (localStorageChangeEvent)="onUpdateLocalStorage()"
           ></app-favorite-table>
-        </div>
+          </div>
+
 
         <div [@detailState]="state">
           <app-detail-page *ngIf="hasDetail == true"
@@ -186,10 +201,10 @@
     </div>
 
 
-
-
   </div>
 
 </div>
+
+
 
 

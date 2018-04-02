@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 var express = require('express');
 var router  = express.Router();
@@ -27,14 +27,14 @@ router.get("/", function(req, res) {
 	} else {
 		var locale = req.query.locale;
 		var keyword  = req.query.keyword.trim();
-		var type = req.query.category;
+		var type = req.query.type;
 		var radius = (parseFloat(req.query.distance.trim()) * 1609).toString(); // mile to meter
 
 
 		function search() {
 			var url = 
 			`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}&keyword=${keyword}`;
-			if (type != 'Default') {
+			if (type != 'default') {
 				url += '&type=' + type;
 			}
 			url += '&key=' + apikey;

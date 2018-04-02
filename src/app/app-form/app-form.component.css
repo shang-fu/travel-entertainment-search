@@ -14,10 +14,21 @@
   padding-bottom: 30px;
 }
 
-.myCustomHeading {
+#myCustomHeading {
   text-align: center;
   padding-bottom: 20px;
+}
 
+@media (min-width: 300px) {
+  #myCustomHeading {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 500px) {
+  #myCustomHeading {
+    font-size: 2rem;
+  }
 }
 
 .redSPot {
@@ -31,3 +42,6 @@ input.ng-invalid.ng-touched {
 .myform-text {
   color: red;
 }
+
+
+

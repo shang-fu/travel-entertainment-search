@@ -80,16 +80,7 @@ export class DetailMapComponent implements OnInit {
   }
 
   onDisplayRoute() {
-    this.marker = null;
-
-
-    // let directionsService = new google.maps.DirectionsService;
-    // let directionsDisplay = new google.maps.DirectionsRenderer({
-    //   draggable: true,
-    //   map: this.map,
-    //   panel: this.detailmapPanel.nativeElement
-    // });
-
+    this.marker.setMap(null);
     let inputValue = this.inputFrom.nativeElement.value;
     let inputMode = this.inputHow.nativeElement.value.toUpperCase();
     let travelMode: any;
@@ -103,8 +94,6 @@ export class DetailMapComponent implements OnInit {
       travelMode = google.maps.TravelMode.WALKING;
     }
 
-
-    // if (inputValue === 'Your location' || inputValue === 'My location')
 
     this.directionsService.route({
       origin: (inputValue === 'Your location' || inputValue === 'My location') ? this.origin : inputValue,

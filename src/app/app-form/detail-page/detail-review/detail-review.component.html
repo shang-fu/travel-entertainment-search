@@ -1,32 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ company }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <a class="dropdown-item" (click)="onChangeReview('Google Reviews')">Google Reviews</a>
+        <div *ngIf="inUSA === true">
+          <a class="dropdown-item" (click)="onChangeReview('Yelp Reviews')">Yelp Reviews</a>
+        </div>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{ company }}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-      <a class="dropdown-item" (click)="onChangeReview('Google Reviews')">Google Reviews</a>
-      <div *ngIf="inUSA === true">
-        <a class="dropdown-item" (click)="onChangeReview('Yelp Reviews')">Yelp Reviews</a>
+    <div style="position: absolute; left: 160px;" class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ order }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+        <a class="dropdown-item" (click)="onChangeOrder('Default Order')">Default Order</a>
+        <a class="dropdown-item" (click)="onChangeOrder('Highest Rating')">Highest Rating</a>
+        <a class="dropdown-item" (click)="onChangeOrder('Lowest Rating')">Lowest Rating</a>
+        <a class="dropdown-item" (click)="onChangeOrder('Most Recent')">Most Recent</a>
+        <a class="dropdown-item" (click)="onChangeOrder('Least Recent')">Least Recent</a>
       </div>
     </div>
   </div>
 
-  <div style="position: absolute; left: 160px;" class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{ order }}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-      <a class="dropdown-item" (click)="onChangeOrder('Default Order')">Default Order</a>
-      <a class="dropdown-item" (click)="onChangeOrder('Highest Rating')">Highest Rating</a>
-      <a class="dropdown-item" (click)="onChangeOrder('Lowest Rating')">Lowest Rating</a>
-      <a class="dropdown-item" (click)="onChangeOrder('Most Recent')">Most Recent</a>
-      <a class="dropdown-item" (click)="onChangeOrder('Least Recent')">Least Recent</a>
-    </div>
-  </div>
-</div>
-
-<div class="row">
+  <div class="row">
   <div [@googleState]="state" style="width: 100%;">
     <div *ngIf="company === 'Google Reviews'">
     <div *ngIf="googleReviews === null || googleReviews === undefined">
@@ -100,7 +100,7 @@
   </div>
 
 </div>
-
+</div>
 
 
 

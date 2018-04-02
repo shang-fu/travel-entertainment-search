@@ -20,3 +20,9 @@
 .detailBackground {
   background-color: rgb(245, 218, 152);
 }
+
+.scrollable {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
