@@ -32,19 +32,18 @@ router.get("/", function(req, res) {
 
 
 		function search() {
-			var url = 
-			`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location}&radius=${radius}`;
 
-			url += '&keyword=' + keyword.split(' ').join('+');
+			var option = {
+				uri: 'https://maps.googleapis.com/maps/api/place/nearbysearch/json',
+				qs: {
+					location: location,
+					radius: radius,
+					keyword: keyword,
+					key: apikey
+				}
+			};
 
-			if (type != 'default') {
-				url += '&type=' + type;
-			}
-			url += '&key=' + apikey;
-
-			console.log(url);
-
-			request(url, function(error, response, body){
+			request(option, function(error, response, body){
 				if (error) {
 				  	console.log('error:', error); // Print the error if one occurred
 				} else {
@@ -63,15 +62,21 @@ router.get("/", function(req, res) {
 
 		} else if (locale == 'other') {
 			var address  = req.query.localeOtherDetail.trim();
-			var url = 'https://maps.googleapis.com/maps/api/geocode/json?'
-			 		+ 'address=' + address.split(' ').join('+') 
-			 		+ '&key=' + apikey;
-			console.log(url);
 
-			request(url, function(error, response, body){
+			var option = {
+				uri: 'https://maps.googleapis.com/maps/api/geocode/json',
+				qs: {
+					address: address,
+					key: apikey
+				}
+			};
+			
+
+			request(option, function(error, response, body){
 				if (error) {
 				  	console.log('error:', error); // Print the error if one occurred
 				} else {
+					// console.log(response);
 					if (response.statusCode == 200) {
 						var data = JSON.parse(body)['results'][0]['geometry']['location'];
 						location = data['lat'] + ',' + data['lng'];

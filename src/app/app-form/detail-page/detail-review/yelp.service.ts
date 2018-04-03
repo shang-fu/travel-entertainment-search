@@ -13,6 +13,7 @@ export class YelpService {
         .set('name', queries['name'])
         .append('address1', queries['address1'])
         .append('address2', queries['address2'])
+        .append('address3', queries['address3'])
         .append('city', queries['city'])
         .append('state', queries['state'])
         .append('country', queries['country'])

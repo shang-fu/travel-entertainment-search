@@ -68,6 +68,8 @@ export class DetailReviewComponent implements OnInit {
         country: 'US'
       };
 
+      console.log(yelpRequest);
+
       this.yelp.getReviews(yelpRequest)
         .subscribe((response) => {
           console.log('yelp reviews...');
