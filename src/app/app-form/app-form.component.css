@@ -12,22 +12,24 @@
   border-style: solid;
   padding-top: 30px;
   padding-bottom: 30px;
+  border-radius: 2rem;
 }
 
 #myCustomHeading {
   text-align: center;
   padding-bottom: 20px;
+  font-family: 'Lobster', cursive;
 }
 
 @media (min-width: 300px) {
   #myCustomHeading {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
 @media (min-width: 500px) {
   #myCustomHeading {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 
