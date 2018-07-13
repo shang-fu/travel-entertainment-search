@@ -21,11 +21,13 @@ router.get("/", function(req, res) {
 		country: req.query.country
 		
 	}).then(response => {
+		console.log(response);
 		var data = JSON.parse(response.body);
 		console.log(data);
-		console.log(data.businesses[0].location.address1);
-		console.log(req.query.address1);
+		// console.log(data.businesses[0].location.address1);
+		// console.log(req.query.address1);
 
+		console.log(data["businesses"].length);
 
 		if (data.businesses.length != 0 && (data.businesses[0].location.address1 === req.query.address1 || data.businesses[0].name === req.query.name)) {
 			console.log('Finding the correct location');
@@ -38,6 +40,8 @@ router.get("/", function(req, res) {
 			}).catch(e => {
 				console.log('Reviews search error...');
 			});
+		} else {
+			res.send(JSON.parse("{\"reviews\": []}"));
 		}
 
 

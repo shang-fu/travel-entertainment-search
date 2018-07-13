@@ -3,7 +3,7 @@
 var express = require('express');
 var router  = express.Router();
 var request = require("request");
-const apikey  = "AIzaSyB2yS5yyo3DWDoKJ6GSIs4Lr7AsMvVqtHQ";
+const apikey  = "AIzaSyBym2D1jDbynncnoPnbDrIae41CWnD81tY";
 
 router.get("/", function(req, res) {
 	console.log("Queries are ...")
@@ -43,6 +43,10 @@ router.get("/", function(req, res) {
 				}
 			};
 
+			if (type != "default") {
+				option["qs"]["type"] = type
+			}
+
 			request(option, function(error, response, body){
 				if (error) {
 				  	console.log('error:', error); // Print the error if one occurred
@@ -56,7 +60,7 @@ router.get("/", function(req, res) {
 		}
 
 		if (locale == 'current') {
-			var location = req.query.lat + ',' + req.query.lng;
+			var location = `${req.query.lat},${req.query.lng}`;
 			search();
 
 
